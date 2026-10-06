@@ -1019,6 +1019,8 @@
         border-radius: var(--radius-md);
         transition: transform 0.3s ease;
         font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        word-break: keep-all;
     }
 
     .vizavi-landing .contact-phone:hover {
@@ -1414,10 +1416,12 @@
         }
 
         .vizavi-landing .contact-phone {
-            font-size: clamp(1.5rem, 7vw, 2rem);
-            padding: var(--spacing-sm) var(--spacing-xs);
+            font-size: clamp(1.35rem, 6.5vw, 1.85rem);
+            padding: var(--spacing-sm) 0;
             display: block;
             width: 100%;
+            white-space: nowrap;
+            letter-spacing: -0.03em;
         }
 
         .vizavi-landing .contact-note {
@@ -1538,6 +1542,12 @@
 
         .vizavi-landing .collection-card {
             flex: 0 0 240px;
+        }
+
+        /* ===== Телефон — на самых узких экранах ===== */
+        .vizavi-landing .contact-phone {
+            font-size: 1.25rem;
+            letter-spacing: -0.04em;
         }
     }
 
@@ -1886,7 +1896,7 @@
                     </div>
                 </div>
 
-                <!-- Дубли -->
+                <!-- Дубли для бесшовного цикла -->
                 <div class="collection-card">
                     <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
                         <img src="https://static.tildacdn.com/stor6462-3231-4535-b366-306565393434/cdc4d5dd0fdd09d0cabe0e2fc17fca32.png" alt="Монолит" class="collection-image">
@@ -2032,7 +2042,7 @@
                 <a href="tel:88005550052" class="contact-phone">8 (800) 555-00-52</a>
 
                 <div class="contact-note">
-                    Бесплатный звонок по России · пн–пт: 09:00–18:00
+                    Бесплатный звонок по России · пн–пт: 09:00–20:00
                 </div>
             </div>
         </div>
