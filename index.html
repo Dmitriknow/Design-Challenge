@@ -3,2259 +3,2202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vizavi Design Challenge</title>
+    <title>Vizavi Design Challenge — Конкурс для дизайнеров и архитекторов</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://static.tildacdn.com">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <style>
-    /* ===== Цветовая палитра 2026 — природные земляные оттенки ===== */
-    .vizavi-landing {
-        --color-cream: #EFE7DB;
-        --color-warm-white: #F8F4EE;
-        --color-sand: #E5D5C3;
-        --color-clay: #C2A58C;
+/* ============================================================
+   VIZAVI DESIGN CHALLENGE — Motion Edition v11
+   ============================================================ */
 
-        --color-moss: #5F6F52;
-        --color-deep-moss: #4A5943;
-        --color-sage: #8B9A7E;
+.vz {
+    --bg: #FDFCF9;
+    --bg-alt: #F7F4EE;
+    --bg-warm: #F5EFE4;
+    --white: #FFFFFF;
 
-        --color-copper: #B87450;
-        --color-bronze: #9B6B47;
-        --color-warm-gold: #C4924A;
+    --ink: #1A1A1A;
+    --ink-soft: #4A4A4A;
+    --ink-mute: #8A8A8A;
 
-        --color-text-primary: #2D3319;
-        --color-text-secondary: #4A5943;
-        --color-text-muted: #6B7463;
+    --terracotta: #E05A2B;
+    --terracotta-dark: #C94D20;
+    --terracotta-soft: rgba(224, 90, 43, 0.08);
+    --terracotta-glow: rgba(224, 90, 43, 0.18);
 
-        --color-bg-primary: #F8F4EE;
-        --color-bg-secondary: #EFE7DB;
-        --color-bg-elevated: #FFFFFF;
+    --teal: #1E8A7A;
+    --sand: #E8DCCB;
 
-        --color-border: rgba(95, 111, 82, 0.15);
-        --color-border-light: rgba(95, 111, 82, 0.08);
+    --border: rgba(26, 26, 26, 0.07);
+    --border-soft: rgba(26, 26, 26, 0.04);
 
-        --gradient-nature: linear-gradient(135deg, #5F6F52 0%, #8B9A7E 100%);
-        --gradient-warm: linear-gradient(135deg, #B87450 0%, #C4924A 100%);
-        --gradient-subtle: linear-gradient(180deg, rgba(95, 111, 82, 0.04) 0%, transparent 100%);
+    --shadow-xs: 0 1px 2px rgba(26, 26, 26, 0.04);
+    --shadow-sm: 0 2px 8px rgba(26, 26, 26, 0.05);
+    --shadow-md: 0 8px 24px rgba(26, 26, 26, 0.07);
+    --shadow-lg: 0 16px 48px rgba(26, 26, 26, 0.10);
+    --shadow-accent: 0 8px 28px rgba(224, 90, 43, 0.22);
 
-        --shadow-sm: 0 2px 8px rgba(45, 51, 25, 0.06);
-        --shadow-md: 0 4px 16px rgba(45, 51, 25, 0.08);
-        --shadow-lg: 0 8px 32px rgba(45, 51, 25, 0.12);
-        --shadow-accent: 0 8px 24px rgba(95, 111, 82, 0.2);
+    --font-h: 'Unbounded', sans-serif;
+    --font-b: 'Manrope', sans-serif;
 
-        --font-heading: 'Unbounded', sans-serif;
-        --font-body: 'Manrope', sans-serif;
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-xl: 32px;
 
-        --spacing-xs: 8px;
-        --spacing-sm: 16px;
-        --spacing-md: 24px;
-        --spacing-lg: 32px;
-        --spacing-xl: 48px;
-        --spacing-2xl: 64px;
-        --spacing-3xl: 96px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-        --radius-sm: 8px;
-        --radius-md: 12px;
-        --radius-lg: 16px;
-        --radius-xl: 24px;
+    font-family: var(--font-b);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+}
 
-        font-family: var(--font-body);
-        background: var(--color-bg-primary);
-        color: var(--color-text-primary);
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        position: relative;
+.vz *, .vz *::before, .vz *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.vz h1, .vz h2, .vz h3 {
+    font-family: var(--font-h);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.vz .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+/* PROGRESS */
+.vz-progress {
+    position: fixed; top: 0; left: 0;
+    height: 3px; background: var(--terracotta);
+    z-index: 200; width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* ===== HEADER ===== */
+.vz-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    background: rgba(253, 252, 249, 0.82);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    border-bottom: 1px solid var(--border-soft);
+    transition: all 0.4s var(--ease);
+}
+
+.vz-header.scrolled {
+    padding: 14px 0;
+    background: rgba(253, 252, 249, 0.95);
+    box-shadow: var(--shadow-sm);
+}
+
+.vz-header-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 32px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+
+.vz-logo {
+    height: 36px;
+    width: auto;
+    transition: height 0.3s var(--ease);
+}
+
+.vz-header.scrolled .vz-logo { height: 30px; }
+
+.vz-nav { display: flex; gap: 6px; align-items: center; }
+
+.vz-nav a {
+    color: var(--ink-soft); text-decoration: none;
+    font-size: 0.85rem; font-weight: 600;
+    padding: 10px 20px; border-radius: 999px;
+    transition: all 0.25s var(--ease); position: relative;
+}
+
+.vz-nav a::before {
+    content: ''; position: absolute; inset: 0;
+    border-radius: 999px; background: var(--terracotta-soft);
+    transform: scale(0); transition: transform 0.3s var(--ease);
+    z-index: -1;
+}
+
+.vz-nav a:hover::before { transform: scale(1); }
+.vz-nav a:hover { color: var(--terracotta); }
+
+/* HERO */
+.vz-hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 140px 0 80px; position: relative; overflow: hidden;
+    background: #1A1A1A;
+}
+
+.vz-hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://raw.githubusercontent.com/Dmitriknow/Test/refs/heads/main/SKALA-11K%20DJ12592.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    animation: vzKenBurns 20s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes vzKenBurns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+}
+
+.vz-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+        110deg,
+        rgba(26, 26, 26, 0.90) 0%,
+        rgba(26, 26, 26, 0.72) 40%,
+        rgba(26, 26, 26, 0.30) 70%,
+        rgba(26, 26, 26, 0.55) 100%
+    );
+    z-index: 1;
+}
+
+.vz-hero-grain {
+    position: absolute; inset: 0; opacity: 0.06; z-index: 2;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.vz-hero .container { position: relative; z-index: 3; }
+
+.vz-hero-inner {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: 60px; align-items: center;
+}
+
+.vz-hero-left { max-width: 580px; }
+
+.vz-hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #fff;
+    margin-bottom: 28px; padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 999px; background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    animation: vzFadeUp 0.8s var(--ease) both;
+}
+
+.vz-hero-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--terracotta);
+    animation: vzPulseDot 2s ease-in-out infinite;
+}
+
+@keyframes vzPulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.vz-hero h1 {
+    font-size: clamp(2.4rem, 5.2vw, 4rem);
+    color: #fff; margin-bottom: 22px; line-height: 1.05;
+}
+
+.vz-hero h1 em { font-style: normal; color: var(--terracotta); }
+
+.vz-hero-sub {
+    font-size: 1.05rem; color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7; margin-bottom: 36px;
+    animation: vzFadeUp 0.8s var(--ease) 0.3s both;
+}
+
+.vz-hero-cta {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    animation: vzFadeUp 0.8s var(--ease) 0.5s both;
+}
+
+.vz-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 16px 30px;
+    font-family: var(--font-b); font-size: 0.88rem; font-weight: 700;
+    letter-spacing: 0.01em; text-decoration: none;
+    border-radius: 999px; border: none; cursor: pointer;
+    transition: all 0.35s var(--ease); white-space: nowrap;
+    position: relative; overflow: hidden;
+}
+
+.vz-btn-primary {
+    background: var(--terracotta); color: #FFFFFF;
+    box-shadow: var(--shadow-accent);
+}
+
+.vz-btn-primary:hover {
+    background: var(--terracotta-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(224, 90, 43, 0.35);
+}
+
+.vz-btn-outline-light {
+    background: transparent; color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.30);
+}
+
+.vz-btn-outline-light:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    background: rgba(224, 90, 43, 0.10);
+}
+
+.vz-hero-right { position: relative; animation: vzFadeUp 0.8s var(--ease) 0.4s both; }
+
+.vz-timer-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(1.3);
+    -webkit-backdrop-filter: blur(20px) saturate(1.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--r-xl); padding: 32px 28px;
+    position: relative; overflow: hidden;
+}
+
+.vz-timer-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--terracotta), transparent 80%);
+}
+
+.vz-timer-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 20px;
+}
+
+.vz-timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.vz-timer-cell { text-align: center; }
+
+.vz-timer-num {
+    font-family: var(--font-h);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800; color: #fff; line-height: 1;
+    font-variant-numeric: tabular-nums; display: block;
+    transition: transform 0.2s var(--ease);
+}
+
+.vz-timer-cell span:last-child {
+    display: block; font-size: 0.58rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45); margin-top: 6px;
+}
+
+.vz-timer-cta {
+    margin-top: 22px; padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    font-size: 0.78rem; color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+}
+
+.vz-timer-cta strong { color: var(--terracotta); font-weight: 700; }
+
+/* TEXT MARQUEE */
+.vz-marquee {
+    background: var(--ink); padding: 18px 0;
+    overflow: hidden; position: relative;
+}
+
+.vz-marquee-track {
+    display: flex; width: max-content;
+    animation: vzMarquee 40s linear infinite;
+    will-change: transform;
+}
+
+.vz-marquee-track:hover { animation-play-state: paused; }
+
+.vz-marquee-item {
+    font-family: var(--font-h); font-size: 0.9rem; font-weight: 700;
+    color: var(--terracotta); white-space: nowrap;
+    letter-spacing: 0.02em; padding-right: 48px;
+    display: inline-flex; align-items: center;
+}
+
+.vz-marquee-item::after {
+    content: '◆'; font-size: 0.5rem;
+    color: rgba(255, 255, 255, 0.35); margin-left: 48px;
+}
+
+@keyframes vzMarquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* GALLERY */
+.vz-gallery-section {
+    background: var(--bg-alt); position: relative;
+    overflow: hidden; padding: 100px 0;
+}
+
+.vz-gallery-section::before {
+    content: ''; position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--terracotta-glow) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.vz-gallery-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; gap: 24px;
+    margin-bottom: 40px; flex-wrap: wrap;
+}
+
+.vz-gallery-head h2 {
+    font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+    color: var(--ink); max-width: 620px;
+}
+
+.vz-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 160px;
+    grid-auto-flow: dense;
+    gap: 12px;
+}
+
+.vz-gallery-item {
+    position: relative; border-radius: var(--r-md);
+    overflow: hidden; cursor: pointer;
+    background: var(--sand); border: none; padding: 0;
+    display: block; width: 100%; height: 100%;
+    text-align: left;
+    will-change: transform;
+    transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1),
+                box-shadow 0.4s var(--ease);
+}
+
+.vz-gallery-item.is-active {
+    grid-row: span 2;
+    grid-column: span 2;
+    z-index: 3;
+    box-shadow: 0 20px 60px rgba(26, 26, 26, 0.18);
+}
+
+.vz-gallery-item:hover {
+    box-shadow: var(--shadow-lg);
+    z-index: 4;
+}
+
+.vz-gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.7s var(--ease);
+}
+
+.vz-gallery-item:hover img { transform: scale(1.07); }
+
+.vz-gallery-item::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(transparent 55%, rgba(26,26,26,0.82));
+    opacity: 0.75; transition: opacity 0.3s;
+    pointer-events: none; z-index: 1;
+}
+
+.vz-gallery-item:hover::after { opacity: 1; }
+
+.vz-gallery-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 14px 16px; z-index: 2; color: #fff;
+    transform: translateY(4px);
+    transition: transform 0.4s var(--ease);
+}
+
+.vz-gallery-item:hover .vz-gallery-info { transform: translateY(0); }
+
+.vz-gallery-info h4 {
+    font-family: var(--font-h); font-size: 0.85rem;
+    font-weight: 700; color: #fff;
+    letter-spacing: -0.01em; line-height: 1.2;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+}
+
+.vz-gallery-item.is-active .vz-gallery-info { padding: 20px 22px; }
+.vz-gallery-item.is-active .vz-gallery-info h4 { font-size: 1.1rem; }
+
+.vz-gallery-item::before {
+    content: ''; position: absolute;
+    top: 12px; right: 12px; z-index: 3;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px;
+    opacity: 0; transform: scale(0.7);
+    transition: opacity 0.3s, transform 0.3s var(--ease);
+}
+
+.vz-gallery-item:hover::before { opacity: 1; transform: scale(1); }
+
+/* LIGHTBOX */
+.vz-lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(15, 15, 15, 0.94);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px; opacity: 0; visibility: hidden;
+    transition: opacity 0.35s var(--ease), visibility 0.35s;
+}
+
+.vz-lightbox.open { opacity: 1; visibility: visible; }
+
+.vz-lightbox-img-wrap {
+    max-width: 90vw; max-height: 80vh;
+    position: relative; transform: scale(0.9);
+    transition: transform 0.4s var(--ease);
+}
+
+.vz-lightbox.open .vz-lightbox-img-wrap { transform: scale(1); }
+
+.vz-lightbox-img-wrap img {
+    max-width: 90vw; max-height: 80vh;
+    display: block; border-radius: var(--r-md);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+.vz-lightbox-caption {
+    position: absolute; bottom: -60px; left: 0;
+    color: #fff; text-align: left;
+}
+
+.vz-lightbox-caption h4 {
+    font-family: var(--font-h); font-size: 1.2rem;
+    font-weight: 700; color: #fff;
+}
+
+.vz-lightbox-close {
+    position: absolute; top: 24px; right: 24px;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #fff; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.25s var(--ease); z-index: 2;
+}
+
+.vz-lightbox-close:hover {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    transform: rotate(90deg);
+}
+
+.vz-lightbox-close svg { width: 20px; height: 20px; }
+
+.vz-lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #fff; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.25s var(--ease); z-index: 2;
+}
+
+.vz-lightbox-nav:hover {
+    background: var(--terracotta); border-color: var(--terracotta);
+}
+
+.vz-lightbox-nav svg { width: 22px; height: 22px; }
+.vz-lightbox-prev { left: 24px; }
+.vz-lightbox-next { right: 24px; }
+
+/* ===== TILE STRIP (без шапки) ===== */
+.vz-tile-strip {
+    background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg-alt) 100%);
+    padding: 56px 0;
+    overflow: hidden; position: relative;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.vz-tile-row {
+    display: flex; width: max-content;
+    will-change: transform; padding-bottom: 12px;
+}
+
+.vz-tile-row:last-child { padding-bottom: 0; }
+.vz-tile-row--ltr { animation: vzTileLTR 70s linear infinite; }
+.vz-tile-row--rtl { animation: vzTileRTL 80s linear infinite; margin-top: 12px; }
+.vz-tile-strip:hover .vz-tile-row { animation-play-state: paused; }
+
+@keyframes vzTileLTR {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes vzTileRTL {
+    from { transform: translate3d(-50%, 0, 0); }
+    to { transform: translate3d(0, 0, 0); }
+}
+
+.vz-tile {
+    width: 160px; height: 160px; border-radius: 14px;
+    overflow: hidden; flex-shrink: 0; position: relative;
+    background: var(--white);
+    box-shadow: 0 2px 12px rgba(26, 26, 26, 0.06), 0 1px 3px rgba(26, 26, 26, 0.04);
+    margin-right: 14px;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.vz-tile:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(26, 26, 26, 0.12);
+    z-index: 3;
+}
+
+.vz-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* SECTION SHARED */
+.vz-section { padding: 100px 0; position: relative; }
+.vz-section-head { margin-bottom: 52px; }
+.vz-section-head.centered { text-align: center; }
+
+.vz-section h2 {
+    font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+    color: var(--ink); margin-bottom: 12px;
+}
+
+.vz-section-desc {
+    font-size: 1rem; color: var(--ink-soft);
+    line-height: 1.65; max-width: 560px;
+}
+
+.centered .vz-section-desc { margin: 0 auto; }
+
+[data-reveal] {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+[data-reveal].in { opacity: 1; transform: translateY(0); }
+
+[data-reveal-delay="1"] { transition-delay: 0.1s; }
+[data-reveal-delay="2"] { transition-delay: 0.2s; }
+[data-reveal-delay="3"] { transition-delay: 0.3s; }
+[data-reveal-delay="4"] { transition-delay: 0.4s; }
+
+/* ============ PRIZES ============ */
+.vz-prizes {
+    background: linear-gradient(180deg, #0F0D0A 0%, #1A1512 50%, #0F0D0A 100%);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+
+.vz-prizes::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(224, 90, 43, 0.20) 0%, transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: vzGlowPulse 8s ease-in-out infinite;
+}
+
+.vz-prizes::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(30, 138, 122, 0.18) 0%, transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes vzGlowPulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+.vz-prizes .container { position: relative; z-index: 1; }
+
+.vz-prizes-head {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.vz-prizes-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 18px;
+    padding: 8px 18px;
+    background: rgba(224, 90, 43, 0.10);
+    border: 1px solid rgba(224, 90, 43, 0.25);
+    border-radius: 999px;
+}
+
+.vz-prizes-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    animation: vzPulseDot 2s ease-in-out infinite;
+    box-shadow: 0 0 12px var(--terracotta);
+}
+
+.vz-prizes-title {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    color: #fff;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+}
+
+.vz-prizes-title em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--terracotta), #FFB47A);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.vz-prizes-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+.vz-prizes-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.vz-prize-dark {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s var(--ease);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+}
+
+.vz-prize-dark:hover {
+    transform: translateY(-6px);
+    border-color: rgba(224, 90, 43, 0.35);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+
+.vz-prize-dark.vz-prize-dark--first {
+    background: linear-gradient(160deg, rgba(224, 90, 43, 0.12) 0%, rgba(224, 90, 43, 0.04) 100%);
+    border-color: rgba(224, 90, 43, 0.30);
+    grid-row: span 1;
+}
+
+.vz-prize-dark.vz-prize-dark--first::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(224, 90, 43, 0.25) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.vz-prize-dark-img {
+    position: relative;
+    overflow: hidden;
+    background: #0A0806;
+    flex-shrink: 0;
+}
+
+.vz-prize-dark--first .vz-prize-dark-img { height: 320px; }
+.vz-prize-dark:not(.vz-prize-dark--first) .vz-prize-dark-img { height: 200px; }
+
+.vz-prize-dark-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.7s var(--ease);
+}
+
+.vz-prize-dark:hover .vz-prize-dark-img img { transform: scale(1.05); }
+
+.vz-prize-dark-badge {
+    position: absolute;
+    top: 18px; left: 18px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    background: var(--terracotta);
+    color: #fff;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(224, 90, 43, 0.45);
+    animation: vzBadgePulse 3s ease-in-out infinite;
+}
+
+@keyframes vzBadgePulse {
+    0%, 100% { box-shadow: 0 8px 24px rgba(224, 90, 43, 0.45), 0 0 0 0 rgba(224, 90, 43, 0.6); }
+    50% { box-shadow: 0 8px 24px rgba(224, 90, 43, 0.45), 0 0 0 12px rgba(224, 90, 43, 0); }
+}
+
+.vz-prize-dark-rank {
+    position: absolute;
+    bottom: 16px; left: 18px;
+    z-index: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    font-family: var(--font-h);
+    line-height: 1;
+}
+
+.vz-prize-dark-rank-num {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+.vz-prize-dark--first .vz-prize-dark-rank-num {
+    font-size: 3.4rem;
+    background: linear-gradient(135deg, #FFB47A, var(--terracotta));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 4px 20px rgba(224, 90, 43, 0.5));
+}
+
+.vz-prize-dark-body {
+    padding: 26px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.vz-prize-dark--first .vz-prize-dark-body { padding: 32px 30px 34px; }
+
+.vz-prize-dark-body h3 {
+    font-size: 1.15rem;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.vz-prize-dark--first .vz-prize-dark-body h3 {
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    margin-bottom: 12px;
+}
+
+.vz-prize-dark-body p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+}
+
+.vz-prize-dark--first .vz-prize-dark-body p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 90%;
+}
+
+/* ============ HOW IT WORKS ============ */
+.vz-how-section { background: var(--bg); }
+
+.vz-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+.vz-step {
+    background: var(--white); border: 1px solid var(--border-soft);
+    border-radius: var(--r-lg); padding: 28px 22px;
+    transition: all 0.35s var(--ease); position: relative;
+    overflow: hidden; box-shadow: var(--shadow-xs);
+}
+
+.vz-step:hover {
+    border-color: var(--terracotta);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-6px);
+}
+
+.vz-step-num {
+    font-family: var(--font-h); font-size: 2rem; font-weight: 800;
+    color: var(--terracotta); opacity: 0.15; line-height: 1;
+    margin-bottom: 14px;
+    transition: opacity 0.3s, transform 0.3s var(--ease);
+}
+
+.vz-step:hover .vz-step-num { opacity: 0.50; transform: scale(1.1); }
+
+.vz-step h3 {
+    font-size: 0.95rem; color: var(--ink); margin-bottom: 6px; line-height: 1.3;
+}
+
+.vz-step p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.6; }
+
+.vz-conditions {
+    margin-top: 64px;
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-xl);
+    padding: 44px 40px 40px;
+    position: relative;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.vz-conditions::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--terracotta) 0%, #E8A060 50%, var(--terracotta) 100%);
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+}
+
+.vz-conditions::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, var(--terracotta-glow) 0%, transparent 70%);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.vz-conditions-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-soft);
+    position: relative;
+    z-index: 1;
+}
+
+.vz-conditions-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--terracotta-soft);
+    border: 1.5px solid rgba(224, 90, 43, 0.20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.vz-conditions-icon svg { width: 22px; height: 22px; color: var(--terracotta); }
+
+.vz-conditions-title-block { flex: 1; }
+
+.vz-conditions-label {
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--terracotta);
+    display: block; margin-bottom: 4px;
+}
+
+.vz-conditions-title {
+    font-size: 1.35rem; color: var(--ink);
+    font-weight: 700; line-height: 1.2;
+}
+
+.vz-conditions-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 28px;
+    position: relative;
+    z-index: 1;
+}
+
+.vz-conditions-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.vz-conditions-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--terracotta-soft);
+    border: 1.5px solid var(--terracotta);
+    margin-top: 1px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23E05A2B' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px;
+}
+
+.vz-conditions-list li:nth-last-child(-n+2) { border-bottom: none; }
+
+.vz-conditions-footer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.vz-conditions-footer-text {
+    font-size: 0.85rem; color: var(--ink-mute); font-weight: 500;
+}
+
+.vz-conditions-footer-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px;
+    background: var(--terracotta-soft);
+    border-radius: 999px;
+    font-size: 0.78rem; font-weight: 700;
+    color: var(--terracotta); letter-spacing: 0.02em;
+}
+
+.vz-conditions-footer-badge::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--terracotta);
+    animation: vzPulseDot 2s ease-in-out infinite;
+}
+
+/* ============ VISIT — объединённый блок ============ */
+.vz-visit {
+    background: var(--bg-alt);
+    padding: 100px 0;
+}
+
+.vz-visit-panel {
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    position: relative;
+}
+
+/* Левая колонка — контакт */
+.vz-visit-contact {
+    padding: 52px 44px;
+    background: linear-gradient(160deg, #1A1512 0%, #0F0D0A 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vz-visit-contact::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(224, 90, 43, 0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: vzGlowPulse 6s ease-in-out infinite;
+}
+
+.vz-visit-contact::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(30, 138, 122, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.vz-visit-contact-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.vz-visit-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 20px;
+}
+
+.vz-visit-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    animation: vzPulseDot 2s ease-in-out infinite;
+    box-shadow: 0 0 12px var(--terracotta);
+}
+
+.vz-visit-contact h2 {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    color: #fff;
+    margin-bottom: 14px;
+    line-height: 1.15;
+}
+
+.vz-visit-contact p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 340px;
+}
+
+.vz-visit-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-h);
+    font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+    font-weight: 800;
+    color: var(--terracotta);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    padding: 12px 0;
+    font-variant-numeric: tabular-nums;
+    transition: transform 0.25s var(--ease);
+    position: relative;
+}
+
+.vz-visit-phone:hover { transform: translateX(6px); }
+
+.vz-visit-phone svg {
+    width: 22px; height: 22px;
+    color: var(--terracotta);
+    flex-shrink: 0;
+}
+
+.vz-visit-hours {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.02em;
+}
+
+.vz-visit-hours::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Правая колонка — адреса */
+.vz-visit-locations {
+    padding: 52px 44px;
+    display: flex;
+    flex-direction: column;
+}
+
+.vz-visit-locations-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.vz-visit-locations-head h3 {
+    font-size: 1.15rem;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.vz-visit-locations-head span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+}
+
+.vz-visit-locations-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+}
+
+.vz-visit-loc {
+    background: var(--bg);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-md);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s var(--ease);
+}
+
+.vz-visit-loc:hover {
+    border-color: var(--terracotta);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-3px);
+}
+
+.vz-visit-loc-num {
+    font-family: var(--font-h);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+}
+
+.vz-visit-loc h4 {
+    font-family: var(--font-h);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.vz-visit-loc p {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 12px;
+    flex: 1;
+}
+
+.vz-visit-loc-hours {
+    font-size: 0.72rem;
+    color: var(--ink-mute);
+    margin-bottom: 14px;
+    font-weight: 500;
+}
+
+.vz-visit-loc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    text-decoration: none;
+    padding: 8px 0;
+    border-top: 1px solid var(--border-soft);
+    margin-top: auto;
+    transition: gap 0.25s var(--ease);
+}
+
+.vz-visit-loc-btn:hover { gap: 10px; }
+
+.vz-visit-loc-btn svg {
+    width: 14px; height: 14px;
+    transition: transform 0.25s var(--ease);
+}
+
+.vz-visit-loc-btn:hover svg { transform: translateX(2px); }
+
+/* FOOTER */
+.vz-footer {
+    padding: 44px 0 32px; border-top: 1px solid var(--border-soft);
+    text-align: center; background: var(--bg-alt);
+}
+
+.vz-footer-links {
+    display: flex; justify-content: center; gap: 28px;
+    margin-bottom: 22px; flex-wrap: wrap;
+}
+
+.vz-footer-links a {
+    color: var(--ink-soft); text-decoration: none;
+    font-size: 0.83rem; font-weight: 600;
+    transition: color 0.25s;
+}
+
+.vz-footer-links a:hover { color: var(--terracotta); }
+
+.vz-footer-copy { font-size: 0.76rem; color: var(--ink-mute); line-height: 1.6; }
+
+@keyframes vzFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .vz-gallery-grid { grid-template-columns: repeat(5, 1fr); grid-auto-rows: 150px; }
+    .vz-prizes-grid { grid-template-columns: 1.3fr 1fr 1fr; gap: 16px; }
+    .vz-visit-panel { grid-template-columns: 1fr 1.2fr; }
+    .vz-visit-contact,
+    .vz-visit-locations { padding: 44px 32px; }
+}
+
+@media (max-width: 900px) {
+    .vz-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .vz-hero-right { max-width: 420px; }
+    .vz-steps { grid-template-columns: repeat(2, 1fr); }
+    .vz-tile { width: 140px; height: 140px; }
+    .vz-conditions-list { grid-template-columns: 1fr; }
+    .vz-conditions-list li:nth-last-child(-n+2) { border-bottom: 1px solid var(--border-soft); }
+    .vz-conditions-list li:last-child { border-bottom: none; }
+
+    .vz-prizes-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
     }
+    .vz-prize-dark--first { grid-column: span 2; }
+    .vz-prize-dark--first .vz-prize-dark-img { height: 260px; }
 
-    .vizavi-landing *,
-    .vizavi-landing *::before,
-    .vizavi-landing *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+    .vz-visit-panel { grid-template-columns: 1fr; }
+    .vz-visit-contact { padding: 44px 32px; }
+    .vz-visit-locations { padding: 44px 32px; }
+    .vz-visit-locations-list { grid-template-columns: 1fr 1fr; }
+}
 
-    .vizavi-landing h1,
-    .vizavi-landing h2,
-    .vizavi-landing h3,
-    .vizavi-landing h4 {
-        font-family: var(--font-heading);
-        line-height: 1.2;
-        font-weight: 700;
-    }
-
-    .vizavi-landing h1 {
-        font-size: clamp(2.5rem, 6vw, 5rem);
-        letter-spacing: -0.02em;
-    }
-
-    .vizavi-landing h2 {
-        font-size: clamp(2rem, 4vw, 3.5rem);
-        letter-spacing: -0.01em;
-    }
-
-    .vizavi-landing h3 {
-        font-size: clamp(1.5rem, 3vw, 2.25rem);
-    }
-
-    .vizavi-landing .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 var(--spacing-md);
-    }
-
-    .vizavi-landing section {
-        padding: var(--spacing-3xl) 0;
-        position: relative;
-    }
-
-    .vizavi-landing .section-divider {
-        height: 2px;
-        background: linear-gradient(90deg,
-            transparent 0%,
-            var(--color-moss) 20%,
-            var(--color-sage) 50%,
-            var(--color-moss) 80%,
-            transparent 100%);
-        margin: 0 auto;
-        max-width: 80%;
-        opacity: 0.3;
-    }
-
-    /* ===== Header ===== */
-    .vizavi-landing .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: rgba(248, 244, 238, 0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--color-border-light);
-        padding: var(--spacing-md) 0;
-        z-index: 1000;
-        box-shadow: var(--shadow-sm);
-    }
-
-    .vizavi-landing .header-content {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 var(--spacing-md);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .vizavi-landing .logo {
-        height: 44px;
-        width: auto;
-    }
-
-    .vizavi-landing .header-nav {
-        display: flex;
-        gap: var(--spacing-lg);
-        align-items: center;
-    }
-
-    .vizavi-landing .header-link {
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 0.95rem;
-        transition: color 0.2s ease;
-    }
-
-    .vizavi-landing .header-link:hover {
-        color: var(--color-moss);
-    }
-
-    /* ===== Hero ===== */
-    .vizavi-landing .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
+@media (max-width: 768px) {
+    /* HEADER: логотип по центру */
+    .vz-header { padding: 18px 0; }
+    .vz-header.scrolled { padding: 14px 0; }
+    .vz-header-inner {
         justify-content: center;
-        text-align: center;
-        position: relative;
-        background: linear-gradient(135deg, var(--color-warm-white) 0%, var(--color-cream) 50%, var(--color-warm-white) 100%);
-        overflow: hidden;
-        padding: 120px var(--spacing-md) 80px;
-    }
-
-    .vizavi-landing .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: url('https://raw.githubusercontent.com/Dmitriknow/Test/refs/heads/main/SKALA-11K%20DJ12592.jpg');
-        background-size: cover;
-        background-position: center left;
-        opacity: 0.85;
-        -webkit-mask-image: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 1)    0%,
-            rgba(0, 0, 0, 0.95) 20%,
-            rgba(0, 0, 0, 0.55) 45%,
-            rgba(0, 0, 0, 0.15) 70%,
-            rgba(0, 0, 0, 0)    90%
-        );
-        mask-image: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 1)    0%,
-            rgba(0, 0, 0, 0.95) 20%,
-            rgba(0, 0, 0, 0.55) 45%,
-            rgba(0, 0, 0, 0.15) 70%,
-            rgba(0, 0, 0, 0)    90%
-        );
-        z-index: 0;
-    }
-
-    .vizavi-landing .hero::after {
-        content: '';
-        position: absolute;
-        top: 10%;
-        right: 5%;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(95, 111, 82, 0.08) 0%, transparent 70%);
-        border-radius: 50%;
-        animation: vzPulse 8s ease-in-out infinite;
-        z-index: 0;
-    }
-
-    @keyframes vzPulse {
-        0%, 100% { transform: scale(1); opacity: 0.08; }
-        50% { transform: scale(1.1); opacity: 0.15; }
-    }
-
-    .vizavi-landing .hero-content {
-        position: relative;
-        z-index: 1;
-        max-width: 1000px;
-        padding: var(--spacing-2xl) var(--spacing-xl);
-        background: rgba(248, 244, 238, 0.30);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border-radius: var(--radius-xl);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        box-shadow: 0 8px 40px rgba(45, 51, 25, 0.08);
-    }
-
-    .vizavi-landing .hero-title {
-        margin-bottom: var(--spacing-md);
-        background: var(--gradient-nature);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: vzFadeInUp 0.8s ease-out;
-    }
-
-    .vizavi-landing .hero-subtitle {
-        font-size: clamp(1.125rem, 2vw, 1.625rem);
-        color: var(--color-text-secondary);
-        margin-bottom: var(--spacing-lg);
-        animation: vzFadeInUp 0.8s ease-out 0.2s both;
-        font-weight: 500;
-    }
-
-    .vizavi-landing .countdown-label {
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        color: var(--color-text-muted);
-        margin-bottom: var(--spacing-md);
-        font-weight: 600;
-        animation: vzFadeInUp 0.8s ease-out 0.3s both;
-    }
-
-    /* ===== Таймер ===== */
-    .vizavi-landing .countdown-timer {
-        display: flex;
-        gap: var(--spacing-lg);
-        justify-content: center;
-        margin: 0 0 var(--spacing-xl) 0;
-        animation: vzFadeInUp 0.8s ease-out 0.4s both;
-        flex-wrap: wrap;
-    }
-
-    .vizavi-landing .timer-block {
-        background: var(--color-bg-elevated);
-        border: 2px solid var(--color-border);
-        border-radius: var(--radius-lg);
-        padding: var(--spacing-lg) var(--spacing-md);
-        min-width: 110px;
-        text-align: center;
-        position: relative;
-        box-shadow: var(--shadow-md);
-        transition: all 0.3s ease;
-    }
-
-    .vizavi-landing .timer-block:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-accent);
-        border-color: var(--color-moss);
-    }
-
-    .vizavi-landing .timer-block::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: var(--gradient-nature);
-        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    }
-
-    .vizavi-landing .timer-number {
-        font-family: var(--font-heading);
-        font-size: clamp(2.5rem, 4vw, 4rem);
-        font-weight: 800;
-        background: var(--gradient-nature);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: block;
-        line-height: 1;
-        font-variant-numeric: tabular-nums;
-        transition: transform 0.2s ease;
-    }
-
-    .vizavi-landing .timer-label {
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: var(--color-text-muted);
-        margin-top: var(--spacing-xs);
-        font-weight: 600;
-    }
-
-    /* ===== Кнопки ===== */
-    .vizavi-landing .btn {
-        display: inline-block;
-        padding: var(--spacing-md) var(--spacing-xl);
-        font-family: var(--font-heading);
-        font-size: 1rem;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: var(--radius-md);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        border: none;
-        text-align: center;
+        padding: 0 20px;
         position: relative;
     }
-
-    .vizavi-landing .btn-primary {
-        background: var(--gradient-nature);
-        color: white;
-        box-shadow: var(--shadow-accent);
-    }
-
-    .vizavi-landing .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 32px rgba(95, 111, 82, 0.3);
-    }
-
-    .vizavi-landing .btn-secondary {
-        background: var(--color-bg-elevated);
-        color: var(--color-moss);
-        border: 2px solid var(--color-moss);
-    }
-
-    .vizavi-landing .btn-secondary:hover {
-        background: var(--color-moss);
-        color: white;
-    }
-
-    .vizavi-landing .cta-group {
-        display: flex;
-        gap: var(--spacing-md);
-        justify-content: center;
-        flex-wrap: wrap;
-        animation: vzFadeInUp 0.8s ease-out 0.6s both;
-    }
-
-    /* ===== ПРИЗЫ ===== */
-    .vizavi-landing .prizes {
-        background: var(--color-bg-secondary);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .vizavi-landing .prizes::before {
-        content: '';
-        position: absolute;
-        top: -180px;
-        right: -180px;
-        width: 560px;
-        height: 560px;
-        background: radial-gradient(circle, rgba(196, 146, 74, 0.12) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-    }
-
-    .vizavi-landing .prizes::after {
-        content: '';
-        position: absolute;
-        bottom: -200px;
-        left: -200px;
-        width: 520px;
-        height: 520px;
-        background: radial-gradient(circle, rgba(95, 111, 82, 0.10) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-    }
-
-    .vizavi-landing .prizes .container {
-        position: relative;
-        z-index: 1;
-    }
-
-    .vizavi-landing .section-title-centered {
-        text-align: center;
-        margin-bottom: var(--spacing-xl);
-        color: var(--color-text-primary);
-    }
-
-    .vizavi-landing .section-title-centered::after {
-        content: '';
-        display: block;
-        width: 100px;
-        height: 4px;
-        background: var(--gradient-nature);
-        margin: var(--spacing-md) auto 0;
-        border-radius: 2px;
-    }
-
-    .vizavi-landing .prizes-lead {
-        text-align: center;
-        max-width: 680px;
-        margin: 0 auto;
-        color: var(--color-text-secondary);
-        font-size: 1.125rem;
-        line-height: 1.7;
-    }
-
-    .vizavi-landing .prizes-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--spacing-xl);
-        margin-top: var(--spacing-xl);
-    }
-
-    .vizavi-landing .prize-card {
-        background: var(--color-bg-elevated);
-        border: 2px solid var(--color-border-light);
-        border-radius: var(--radius-xl);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        box-shadow: var(--shadow-sm);
-        opacity: 0;
-        position: relative;
-    }
-
-    .vizavi-landing .prize-card.visible {
-        animation: vzFadeInUp 0.6s ease-out forwards;
-    }
-
-    .vizavi-landing .prize-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-lg);
-        border-color: var(--color-moss);
-    }
-
-    .vizavi-landing .prize-image-wrap {
-        position: relative;
-        overflow: hidden;
-        background: var(--color-sand);
-    }
-
-    .vizavi-landing .prize-image {
-        width: 100%;
-        height: 240px;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.6s ease;
-    }
-
-    .vizavi-landing .prize-card:hover .prize-image {
-        transform: scale(1.06);
-    }
-
-    .vizavi-landing .prize-image-wrap::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(45, 51, 25, 0) 45%, rgba(45, 51, 25, 0.40) 100%);
-        pointer-events: none;
-    }
-
-    .vizavi-landing .prize-rank {
-        position: absolute;
-        top: var(--spacing-md);
-        left: var(--spacing-md);
-        z-index: 2;
-        width: 64px;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-heading);
-        font-weight: 800;
-        font-size: 1.75rem;
-        line-height: 1;
-        letter-spacing: -0.04em;
-        background:
-            linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 244, 238, 0.90) 100%);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.85);
-        box-shadow:
-            0 8px 22px rgba(45, 51, 25, 0.20),
-            inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        font-variant-numeric: tabular-nums;
-    }
-
-    .vizavi-landing .prize-rank > span {
-        background: var(--gradient-nature);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
-        transform: translateY(1px);
-    }
-
-    .vizavi-landing .prize-card.first-place .prize-rank {
-        width: 78px;
-        height: 78px;
-        font-size: 2.25rem;
-        border-color: rgba(196, 146, 74, 0.55);
-        box-shadow:
-            0 10px 28px rgba(184, 116, 80, 0.30),
-            0 0 0 6px rgba(196, 146, 74, 0.10),
-            inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    }
-
-    .vizavi-landing .prize-card.first-place .prize-rank > span {
-        background: var(--gradient-warm);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .vizavi-landing .prize-badge {
-        position: absolute;
-        top: var(--spacing-md);
-        right: var(--spacing-md);
-        z-index: 2;
-        padding: 8px 16px;
-        font-family: var(--font-body);
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: #fff;
-        background: var(--gradient-warm);
-        border-radius: 999px;
-        box-shadow: 0 6px 18px rgba(184, 116, 80, 0.35);
-    }
-
-    .vizavi-landing .prize-body {
-        padding: var(--spacing-xl);
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-    }
-
-    .vizavi-landing .prize-place {
-        display: inline-block;
-        align-self: flex-start;
-        font-family: var(--font-body);
-        font-size: 0.72rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        font-weight: 700;
-        padding: 6px 14px;
-        border-radius: 999px;
-        background: rgba(95, 111, 82, 0.10);
-        color: var(--color-moss);
-        margin-bottom: var(--spacing-md);
-    }
-
-    .vizavi-landing .prize-title {
-        font-family: var(--font-heading);
-        font-size: 1.6rem;
-        margin-bottom: var(--spacing-sm);
-        color: var(--color-text-primary);
-        font-weight: 700;
-        line-height: 1.2;
-    }
-
-    .vizavi-landing .prize-description {
-        color: var(--color-text-secondary);
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-
-    .vizavi-landing .prize-card.first-place {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: 1.05fr 1fr;
-        align-items: stretch;
-        border: 2px solid var(--color-warm-gold);
-        background:
-            linear-gradient(135deg, rgba(196, 146, 74, 0.07) 0%, rgba(184, 116, 80, 0.04) 100%),
-            var(--color-bg-elevated);
-        box-shadow: 0 12px 40px rgba(184, 116, 80, 0.18);
-    }
-
-    .vizavi-landing .prize-card.first-place:hover {
-        transform: translateY(-8px);
-        border-color: var(--color-copper);
-        box-shadow: 0 22px 60px rgba(184, 116, 80, 0.28);
-    }
-
-    .vizavi-landing .prize-card.first-place .prize-image-wrap {
-        position: relative;
-        min-height: 400px;
-    }
-
-    .vizavi-landing .prize-card.first-place .prize-image {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .vizavi-landing .prize-card.first-place .prize-image-wrap::after {
-        background: linear-gradient(180deg, rgba(45, 51, 25, 0) 55%, rgba(45, 51, 25, 0.30) 100%);
-    }
-
-    .vizavi-landing .prize-card.first-place .prize-body {
-        padding: var(--spacing-2xl);
-        justify-content: center;
-    }
-
-    .vizavi-landing .prize-card.first-place .prize-place {
-        background: linear-gradient(135deg, rgba(196, 146, 74, 0.20), rgba(184, 116, 80, 0.14));
-        color: var(--color-bronze);
-    }
-
-    .vizavi-landing .prize-card.first-place .prize-title {
-        font-size: clamp(1.75rem, 3vw, 2.5rem);
-        background: var(--gradient-warm);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    /* ===== Блок участия ===== */
-    .vizavi-landing .participation {
-        background: var(--color-bg-primary);
-    }
-
-    .vizavi-landing .steps-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--spacing-lg);
-        margin-top: var(--spacing-xl);
-    }
-
-    .vizavi-landing .step-card {
-        background: var(--color-bg-elevated);
-        border: 2px solid var(--color-border-light);
-        border-radius: var(--radius-lg);
-        padding: var(--spacing-xl);
-        text-align: center;
-        transition: all 0.3s ease;
-        box-shadow: var(--shadow-sm);
-        opacity: 0;
-        position: relative;
-    }
-
-    .vizavi-landing .step-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--gradient-nature);
-        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-    }
-
-    .vizavi-landing .step-card:hover::before {
-        transform: scaleX(1);
-    }
-
-    .vizavi-landing .step-card.visible {
-        animation: vzFadeInUp 0.6s ease-out forwards;
-    }
-
-    .vizavi-landing .step-card:hover {
-        transform: translateY(-8px);
-        border-color: var(--color-moss);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .vizavi-landing .step-number {
-        font-family: var(--font-heading);
-        font-size: 4rem;
-        font-weight: 800;
-        background: var(--gradient-nature);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        line-height: 1;
-        margin-bottom: var(--spacing-md);
-    }
-
-    .vizavi-landing .step-title {
-        font-size: 1.375rem;
-        margin-bottom: var(--spacing-sm);
-        color: var(--color-text-primary);
-        font-weight: 700;
-    }
-
-    .vizavi-landing .step-description {
-        color: var(--color-text-secondary);
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-
-    .vizavi-landing .highlight-text {
-        text-align: center;
-        margin-top: var(--spacing-xl);
-        padding: var(--spacing-lg);
-        background: var(--gradient-subtle);
-        border-left: 4px solid var(--color-moss);
-        border-radius: var(--radius-md);
-        font-size: 1.25rem;
-        color: var(--color-moss);
-        font-weight: 600;
-        box-shadow: var(--shadow-sm);
-    }
-
-    /* ===== Условия ===== */
-    .vizavi-landing .terms {
-        background: var(--color-bg-secondary);
-    }
-
-    .vizavi-landing .terms-list {
-        max-width: 900px;
-        margin: var(--spacing-xl) auto 0;
-        list-style: none;
-    }
-
-    .vizavi-landing .terms-list li {
-        padding: var(--spacing-md) var(--spacing-lg);
-        margin-bottom: var(--spacing-md);
-        background: var(--color-bg-elevated);
-        border-left: 4px solid var(--color-moss);
-        border-radius: var(--radius-sm);
-        display: flex;
-        align-items: flex-start;
-        gap: var(--spacing-md);
-        opacity: 0;
-        box-shadow: var(--shadow-sm);
-        transition: all 0.3s ease;
-    }
-
-    .vizavi-landing .terms-list li:hover {
-        background: var(--gradient-subtle);
-        transform: translateX(8px);
-        box-shadow: var(--shadow-md);
-    }
-
-    .vizavi-landing .terms-list li.visible {
-        animation: vzFadeInLeft 0.5s ease-out forwards;
-    }
-
-    .vizavi-landing .terms-list li::before {
-        content: '✓';
-        color: var(--color-moss);
-        font-weight: 800;
-        font-size: 1.5rem;
-        flex-shrink: 0;
-    }
-
-    /* ===== Карусель ===== */
-    .vizavi-landing .collections-showcase {
-        background: var(--color-bg-primary);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .vizavi-landing .collections-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: var(--spacing-xl);
-        flex-wrap: wrap;
-        gap: var(--spacing-md);
-    }
-
-    .vizavi-landing .collections-title-block {
-        flex: 1;
-    }
-
-    .vizavi-landing .section-title {
-        text-align: left;
-        margin-bottom: var(--spacing-sm);
-        color: var(--color-text-primary);
-    }
-
-    .vizavi-landing .section-subtitle {
-        color: var(--color-text-secondary);
-        font-size: 1.125rem;
-    }
-
-    .vizavi-landing .catalog-btn {
-        padding: var(--spacing-md) var(--spacing-xl);
-        background: var(--gradient-nature);
-        color: white;
-        text-decoration: none;
-        border-radius: var(--radius-md);
-        font-weight: 600;
-        box-shadow: var(--shadow-accent);
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: var(--spacing-xs);
-    }
-
-    .vizavi-landing .catalog-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 32px rgba(95, 111, 82, 0.3);
-    }
-
-    .vizavi-landing .carousel-wrapper {
-        position: relative;
-        width: 100%;
-        margin: var(--spacing-xl) 0 0;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        -webkit-overflow-scrolling: touch;
-        cursor: grab;
-        touch-action: pan-x pan-y;
-    }
-
-    .vizavi-landing .carousel-wrapper::-webkit-scrollbar {
-        display: none;
-    }
-
-    .vizavi-landing .carousel-wrapper:active {
-        cursor: grabbing;
-    }
-
-    .vizavi-landing .carousel-track {
-        display: flex;
-        gap: var(--spacing-md);
-        width: max-content;
-        padding-left: var(--spacing-md);
-        padding-right: var(--spacing-md);
-    }
-
-    .vizavi-landing .collection-card {
-        flex: 0 0 320px;
-        background: var(--color-bg-elevated);
-        border: 1px solid var(--color-border-light);
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        transition: all 0.3s ease;
-        box-shadow: var(--shadow-sm);
-    }
-
-    .vizavi-landing .collection-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-lg);
-        border-color: var(--color-moss);
-    }
-
-    .vizavi-landing .collection-link {
-        display: block;
-        text-decoration: none;
-        overflow: hidden;
-    }
-
-    .vizavi-landing .collection-image {
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.4s ease;
-    }
-
-    .vizavi-landing .collection-link:hover .collection-image {
-        transform: scale(1.05);
-    }
-
-    .vizavi-landing .collection-info {
-        padding: var(--spacing-md);
-    }
-
-    .vizavi-landing .collection-name {
-        font-family: var(--font-heading);
-        font-size: 1.375rem;
-        background: var(--gradient-nature);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: var(--spacing-xs);
-        font-weight: 700;
-    }
-
-    .vizavi-landing .collection-code {
-        font-size: 0.875rem;
-        color: var(--color-text-muted);
-        font-family: 'Courier New', monospace;
-    }
-
-    /* ===== Блок с контактами ===== */
-    .vizavi-landing .contact-block {
-        background: var(--color-bg-secondary);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .vizavi-landing .contact-block::before {
-        content: '';
-        position: absolute;
-        top: -160px;
-        left: -160px;
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(95, 111, 82, 0.10) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-    }
-
-    .vizavi-landing .contact-block::after {
-        content: '';
-        position: absolute;
-        bottom: -180px;
-        right: -180px;
-        width: 520px;
-        height: 520px;
-        background: radial-gradient(circle, rgba(196, 146, 74, 0.12) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-    }
-
-    .vizavi-landing .contact-inner {
-        position: relative;
-        z-index: 1;
-        max-width: 720px;
-        margin: 0 auto;
-        text-align: center;
-        background: var(--color-bg-elevated);
-        border: 2px solid var(--color-border-light);
-        border-radius: var(--radius-xl);
-        padding: var(--spacing-3xl) var(--spacing-xl);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .vizavi-landing .contact-icon {
-        width: 72px;
-        height: 72px;
-        margin: 0 auto var(--spacing-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--gradient-nature);
-        color: #fff;
-        border-radius: 50%;
-        box-shadow: var(--shadow-accent);
-    }
-
-    .vizavi-landing .contact-icon svg {
-        width: 34px;
-        height: 34px;
-    }
-
-    .vizavi-landing .contact-title {
-        font-size: clamp(1.75rem, 4vw, 2.5rem);
-        margin-bottom: var(--spacing-md);
-        color: var(--color-text-primary);
-    }
-
-    .vizavi-landing .contact-subtitle {
-        font-size: 1.125rem;
-        line-height: 1.7;
-        color: var(--color-text-secondary);
-        margin-bottom: var(--spacing-xl);
-        max-width: 560px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .vizavi-landing .contact-phone {
-        display: inline-block;
-        font-family: var(--font-heading);
-        font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        text-decoration: none;
-        background: var(--gradient-nature);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        padding: var(--spacing-sm) var(--spacing-md);
-        border-radius: var(--radius-md);
-        transition: transform 0.3s ease;
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-        word-break: keep-all;
-    }
-
-    .vizavi-landing .contact-phone:hover {
-        transform: scale(1.04);
-    }
-
-    .vizavi-landing .contact-note {
-        margin-top: var(--spacing-md);
-        font-size: 0.9rem;
-        letter-spacing: 0.05em;
-        color: var(--color-text-muted);
-    }
-
-    /* ===== Адреса салонов ===== */
-    .vizavi-landing .locations {
-        background: var(--color-bg-primary);
-    }
-
-    .vizavi-landing .locations-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-        gap: var(--spacing-xl);
-        margin-top: var(--spacing-xl);
-    }
-
-    .vizavi-landing .location-card {
-        background: var(--color-bg-elevated);
-        border: 2px solid var(--color-border-light);
-        border-radius: var(--radius-lg);
-        padding: var(--spacing-xl);
-        transition: all 0.3s ease;
-        box-shadow: var(--shadow-sm);
-    }
-
-    .vizavi-landing .location-card:hover {
-        border-color: var(--color-moss);
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .vizavi-landing .location-title {
-        font-size: 1.5rem;
-        margin-bottom: var(--spacing-md);
-        background: var(--gradient-nature);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 700;
-    }
-
-    .vizavi-landing .location-address {
-        margin-bottom: var(--spacing-md);
-        line-height: 1.7;
-        color: var(--color-text-primary);
-    }
-
-    .vizavi-landing .location-hours {
-        color: var(--color-text-muted);
-        font-size: 0.95rem;
-        margin-bottom: var(--spacing-md);
-    }
-
-    .vizavi-landing .location-map-btn {
-        display: inline-block;
-        padding: var(--spacing-sm) var(--spacing-lg);
-        background: transparent;
-        border: 2px solid var(--color-moss);
-        color: var(--color-moss);
-        text-decoration: none;
-        border-radius: var(--radius-sm);
-        font-size: 0.95rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-
-    .vizavi-landing .location-map-btn:hover {
-        background: var(--gradient-nature);
-        color: white;
-        border-color: transparent;
-        transform: translateX(4px);
-    }
-
-    /* ===== Футер ===== */
-    .vizavi-landing .footer {
-        background: var(--color-deep-moss);
-        padding: var(--spacing-2xl) 0 var(--spacing-lg);
-        text-align: center;
-        color: var(--color-cream);
-    }
-
-    .vizavi-landing .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: var(--spacing-xl);
-        flex-wrap: wrap;
-        margin-bottom: var(--spacing-lg);
-    }
-
-    .vizavi-landing .footer-link {
-        color: var(--color-sand);
-        text-decoration: none;
-        transition: color 0.2s ease;
-        font-weight: 500;
-    }
-
-    .vizavi-landing .footer-link:hover {
-        color: var(--color-cream);
-    }
-
-    .vizavi-landing .footer-copyright {
-        color: var(--color-sand);
-        font-size: 0.875rem;
-        line-height: 1.7;
-    }
-
-    /* ===== Анимации ===== */
-    @keyframes vzFadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes vzFadeInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-40px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    /* ===== МОБИЛЬНАЯ ОПТИМИЗАЦИЯ ===== */
-    @media (max-width: 768px) {
-        .vizavi-landing .header-nav {
-            display: none;
-        }
-
-        .vizavi-landing .header-content {
-            justify-content: center;
-            position: relative;
-        }
-
-        .vizavi-landing .logo {
-            height: 36px;
-            margin: 0 auto;
-            display: block;
-        }
-
-        .vizavi-landing section {
-            padding: var(--spacing-2xl) 0;
-        }
-
-        .vizavi-landing .hero {
-            padding: 100px var(--spacing-md) 60px;
-            min-height: auto;
-        }
-
-        .vizavi-landing .hero::before {
-            background-position: center top;
-            -webkit-mask-image: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.9)  0%,
-                rgba(0, 0, 0, 0.75) 20%,
-                rgba(0, 0, 0, 0.4)  50%,
-                rgba(0, 0, 0, 0.1)  80%,
-                rgba(0, 0, 0, 0)    100%
-            );
-            mask-image: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.9)  0%,
-                rgba(0, 0, 0, 0.75) 20%,
-                rgba(0, 0, 0, 0.4)  50%,
-                rgba(0, 0, 0, 0.1)  80%,
-                rgba(0, 0, 0, 0)    100%
-            );
-        }
-
-        .vizavi-landing .hero-content {
-            padding: var(--spacing-xl) var(--spacing-md);
-            background: rgba(248, 244, 238, 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: var(--radius-lg);
-            border-width: 2px;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .vizavi-landing .hero-title {
-            font-size: clamp(2rem, 8vw, 2.75rem);
-            margin-bottom: var(--spacing-md);
-            line-height: 1.1;
-        }
-
-        .vizavi-landing .hero-subtitle {
-            font-size: clamp(1rem, 4vw, 1.25rem);
-            margin-bottom: var(--spacing-xl);
-            line-height: 1.5;
-        }
-
-        .vizavi-landing .countdown-timer {
-            gap: 6px;
-            margin-bottom: var(--spacing-xl);
-            flex-wrap: nowrap;
-            width: 100%;
-        }
-
-        .vizavi-landing .timer-block {
-            min-width: 0;
-            flex: 1 1 0;
-            max-width: none;
-            padding: var(--spacing-md) 2px;
-        }
-
-        .vizavi-landing .timer-number {
-            font-size: clamp(1.4rem, 5.5vw, 1.9rem);
-            letter-spacing: -0.02em;
-        }
-
-        .vizavi-landing .timer-label {
-            font-size: 0.62rem;
-            letter-spacing: 0.06em;
-            margin-top: 4px;
-        }
-
-        .vizavi-landing .cta-group {
-            flex-direction: column;
-            gap: var(--spacing-md);
-            width: 100%;
-        }
-
-        .vizavi-landing .btn {
-            width: 100%;
-            padding: var(--spacing-lg) var(--spacing-xl);
-            font-size: 1.125rem;
-            min-height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .vizavi-landing .section-title-centered,
-        .vizavi-landing .section-title {
-            font-size: clamp(1.75rem, 6vw, 2.5rem);
-            text-align: center;
-        }
-
-        .vizavi-landing .prizes-grid {
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
-        }
-
-        .vizavi-landing .prize-card.first-place {
-            grid-template-columns: 1fr;
-        }
-
-        .vizavi-landing .prize-card.first-place .prize-image-wrap {
-            min-height: 240px;
-        }
-
-        .vizavi-landing .prize-image {
-            height: 200px;
-        }
-
-        .vizavi-landing .prize-body,
-        .vizavi-landing .prize-card.first-place .prize-body {
-            padding: var(--spacing-lg);
-        }
-
-        .vizavi-landing .prize-rank {
-            width: 54px;
-            height: 54px;
-            font-size: 1.45rem;
-        }
-
-        .vizavi-landing .prize-card.first-place .prize-rank {
-            width: 64px;
-            height: 64px;
-            font-size: 1.75rem;
-            box-shadow:
-                0 8px 22px rgba(184, 116, 80, 0.28),
-                0 0 0 4px rgba(196, 146, 74, 0.10),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        }
-
-        .vizavi-landing .prize-title {
-            font-size: 1.4rem;
-        }
-
-        .vizavi-landing .prize-card.first-place .prize-title {
-            font-size: 1.75rem;
-        }
-
-        .vizavi-landing .steps-grid {
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
-        }
-
-        .vizavi-landing .step-card {
-            padding: var(--spacing-xl);
-        }
-
-        .vizavi-landing .step-number {
-            font-size: 5rem;
-        }
-
-        .vizavi-landing .step-title {
-            font-size: 1.5rem;
-        }
-
-        .vizavi-landing .step-description {
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-
-        .vizavi-landing .highlight-text {
-            font-size: 1.125rem;
-            padding: var(--spacing-lg) var(--spacing-md);
-        }
-
-        .vizavi-landing .terms-list li {
-            padding: var(--spacing-lg) var(--spacing-md);
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-
-        .vizavi-landing .terms-list li::before {
-            font-size: 1.75rem;
-        }
-
-        .vizavi-landing .collections-header {
-            flex-direction: column;
-            align-items: stretch;
-            gap: var(--spacing-lg);
-        }
-
-        .vizavi-landing .section-subtitle {
-            font-size: 1rem;
-        }
-
-        .vizavi-landing .catalog-btn {
-            width: 100%;
-            justify-content: center;
-            padding: var(--spacing-lg) var(--spacing-xl);
-            font-size: 1.125rem;
-            min-height: 56px;
-        }
-
-        .vizavi-landing .carousel-wrapper {
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        .vizavi-landing .collection-card {
-            flex: 0 0 280px;
-        }
-
-        .vizavi-landing .collection-image {
-            height: 240px;
-        }
-
-        .vizavi-landing .collection-name {
-            font-size: 1.25rem;
-        }
-
-        /* ===== Блок контактов — мобильный ===== */
-        .vizavi-landing .contact-inner {
-            padding: var(--spacing-2xl) var(--spacing-lg);
-            border-radius: var(--radius-lg);
-        }
-
-        .vizavi-landing .contact-icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .vizavi-landing .contact-icon svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        .vizavi-landing .contact-subtitle {
-            font-size: 1rem;
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .vizavi-landing .contact-phone {
-            font-size: clamp(1.35rem, 6.5vw, 1.85rem);
-            padding: var(--spacing-sm) 0;
-            display: block;
-            width: 100%;
-            white-space: nowrap;
-            letter-spacing: -0.03em;
-        }
-
-        .vizavi-landing .contact-note {
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        .vizavi-landing .locations-grid {
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
-        }
-
-        .vizavi-landing .location-card {
-            padding: var(--spacing-xl) var(--spacing-lg);
-        }
-
-        .vizavi-landing .location-title {
-            font-size: 1.5rem;
-        }
-
-        .vizavi-landing .location-address {
-            font-size: 1.05rem;
-        }
-
-        .vizavi-landing .location-map-btn {
-            width: 100%;
-            padding: var(--spacing-md) var(--spacing-lg);
-            text-align: center;
-            font-size: 1.05rem;
-            min-height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .vizavi-landing .footer-links {
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-
-        .vizavi-landing .footer-link {
-            font-size: 1.05rem;
-        }
-
-        .vizavi-landing .footer-copyright {
-            font-size: 0.875rem;
-            padding: 0 var(--spacing-md);
-        }
-
-        .vizavi-landing .container {
-            padding: 0 var(--spacing-lg);
-        }
-
-        @media (hover: none) {
-            .vizavi-landing .prize-card:hover,
-            .vizavi-landing .step-card:hover,
-            .vizavi-landing .location-card:hover {
-                transform: none;
-            }
-
-            .vizavi-landing .timer-block:hover {
-                transform: none;
-            }
-        }
-
-        .vizavi-landing .btn:active {
-            transform: scale(0.98);
-        }
-
-        .vizavi-landing .collection-card:active {
-            transform: translateY(-4px);
-        }
-    }
-
-    @media (max-width: 380px) {
-        .vizavi-landing .hero-content {
-            padding: var(--spacing-lg) var(--spacing-md);
-        }
-
-        .vizavi-landing .hero-title {
-            font-size: 1.75rem;
-        }
-
-        .vizavi-landing .hero-subtitle {
-            font-size: 0.95rem;
-        }
-
-        .vizavi-landing .countdown-label {
-            font-size: 0.85rem;
-        }
-
-        .vizavi-landing .countdown-timer {
-            gap: 4px;
-        }
-
-        .vizavi-landing .timer-block {
-            padding: var(--spacing-sm) 1px;
-        }
-
-        .vizavi-landing .timer-number {
-            font-size: 1.15rem;
-            letter-spacing: -0.03em;
-        }
-
-        .vizavi-landing .timer-label {
-            font-size: 0.55rem;
-            letter-spacing: 0.02em;
-        }
-
-        .vizavi-landing .container {
-            padding: 0 var(--spacing-md);
-        }
-
-        .vizavi-landing .section-title-centered,
-        .vizavi-landing .section-title {
-            font-size: 1.5rem;
-        }
-
-        .vizavi-landing .collection-card {
-            flex: 0 0 240px;
-        }
-
-        /* ===== Телефон — на самых узких экранах ===== */
-        .vizavi-landing .contact-phone {
-            font-size: 1.25rem;
-            letter-spacing: -0.04em;
-        }
-    }
-
-    @media (max-width: 768px) and (orientation: landscape) {
-        .vizavi-landing .hero {
-            min-height: auto;
-            padding: 80px var(--spacing-md) 40px;
-        }
-
-        .vizavi-landing .hero-content {
-            padding: var(--spacing-lg) var(--spacing-xl);
-        }
-
-        .vizavi-landing .countdown-timer {
-            gap: var(--spacing-sm);
-        }
-
-        .vizavi-landing .timer-block {
-            min-width: 70px;
-            padding: var(--spacing-md) var(--spacing-sm);
-        }
-
-        .vizavi-landing section {
-            padding: var(--spacing-xl) 0;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .vizavi-landing *,
-        .vizavi-landing *::before,
-        .vizavi-landing *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
+    .vz-nav { display: none; }
+    .vz-logo { height: 32px; }
+    .vz-header.scrolled .vz-logo { height: 28px; }
+
+    .vz-section, .vz-gallery-section { padding: 64px 0; }
+    .vz-visit { padding: 64px 0; }
+    .vz-prizes { padding: 72px 0; }
+    .vz-hero { padding: 110px 0 60px; min-height: auto; }
+    .vz-hero h1 { font-size: 1.9rem; }
+    .vz-hero-cta { flex-direction: column; }
+    .vz-btn { width: 100%; }
+    .vz-timer-card { padding: 24px 20px; }
+    .vz-steps { grid-template-columns: 1fr; }
+    .vz-footer-links { flex-direction: column; gap: 12px; }
+
+    .vz-gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 130px; }
+    .vz-gallery-item.is-active {
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+    .vz-gallery-head { flex-direction: column; align-items: flex-start; }
+
+    .vz-conditions { padding: 28px 22px 24px; }
+    .vz-conditions-header { gap: 14px; padding-bottom: 18px; }
+    .vz-conditions-icon { width: 42px; height: 42px; }
+    .vz-conditions-title { font-size: 1.15rem; }
+    .vz-conditions-list li { font-size: 0.88rem; }
+    .vz-conditions-footer { flex-direction: column; align-items: flex-start; }
+
+    .vz-prizes-grid { grid-template-columns: 1fr; }
+    .vz-prize-dark--first { grid-column: span 1; }
+    .vz-prize-dark--first .vz-prize-dark-img { height: 220px; }
+    .vz-prize-dark:not(.vz-prize-dark--first) .vz-prize-dark-img { height: 180px; }
+    .vz-prizes-title { font-size: 1.8rem; }
+
+    .vz-visit-contact { padding: 36px 26px; }
+    .vz-visit-locations { padding: 36px 26px; }
+    .vz-visit-locations-list { grid-template-columns: 1fr; }
+    .vz-visit-locations-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+    .vz-tile-strip { padding: 32px 0; }
+    .vz-tile { width: 120px; height: 120px; margin-right: 10px; }
+    .vz-tile-row--rtl { margin-top: 10px; }
+
+    .vz-lightbox { padding: 20px; }
+    .vz-lightbox-nav { width: 42px; height: 42px; }
+    .vz-lightbox-prev { left: 8px; }
+    .vz-lightbox-next { right: 8px; }
+    .vz-lightbox-close { top: 16px; right: 16px; width: 42px; height: 42px; }
+    .vz-lightbox-caption { bottom: -50px; }
+    .vz-lightbox-caption h4 { font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+    .vz-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 130px; gap: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .vz .container, .vz-header-inner { padding: 0 16px; }
+    .vz-hero h1 { font-size: 1.55rem; }
+    .vz-timer-num { font-size: 1.2rem; }
+    .vz-gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
+    .vz-tile { width: 100px; height: 100px; margin-right: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vz *, .vz *::before, .vz *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+    .vz-gallery-item { transition: none !important; }
+}
 </style>
 
-<!-- ====== Весь лендинг внутри изолированного контейнера ====== -->
-<div class="vizavi-landing">
+<div class="vz">
 
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <img src="https://raw.githubusercontent.com/Dmitriknow/Test/refs/heads/main/%D0%9B%D0%BE%D0%B3%D0%BE%20Vizavi%20%D0%B1%D0%B5%D0%B7%20%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B0.png" alt="Vizavi Ceramica" class="logo">
-            <nav class="header-nav">
-                <a href="#participation" class="header-link">Условия</a>
-                <a href="#prizes" class="header-link">Призы</a>
-                <a href="#collections" class="header-link">Коллекции</a>
-                <a href="#contact" class="header-link">Контакты</a>
+    <div class="vz-progress" id="vzProgress"></div>
+
+    <!-- HEADER -->
+    <header class="vz-header" id="vzHeader">
+        <div class="vz-header-inner">
+            <img src="https://raw.githubusercontent.com/Dmitriknow/Test/refs/heads/main/%D0%9B%D0%BE%D0%B3%D0%BE%20Vizavi%20%D0%B1%D0%B5%D0%B7%20%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B0.png" alt="Vizavi" class="vz-logo">
+            <nav class="vz-nav">
+                <a href="#gallery">Коллекции</a>
+                <a href="#prizes">Призы</a>
+                <a href="#how">Условия</a>
+                <a href="#visit">Контакты</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Vizavi Design Challenge</h1>
-            <p class="hero-subtitle">Конкурс для дизайнеров и архитекторов.<br>Продавайте керамогранит Vizavi Ceramica — получайте призы.</p>
+    <!-- HERO -->
+    <section class="vz-hero">
+        <div class="vz-hero-bg"></div>
+        <div class="vz-hero-overlay"></div>
+        <div class="vz-hero-grain"></div>
 
-            <div class="countdown-label">До конца конкурса</div>
-
-            <div class="countdown-timer" id="countdown">
-                <div class="timer-block">
-                    <span class="timer-number" id="days">00</span>
-                    <span class="timer-label">Дней</span>
-                </div>
-                <div class="timer-block">
-                    <span class="timer-number" id="hours">00</span>
-                    <span class="timer-label">Часов</span>
-                </div>
-                <div class="timer-block">
-                    <span class="timer-number" id="minutes">00</span>
-                    <span class="timer-label">Минут</span>
-                </div>
-                <div class="timer-block">
-                    <span class="timer-number" id="seconds">00</span>
-                    <span class="timer-label">Секунд</span>
-                </div>
-            </div>
-
-            <div class="cta-group">
-                <a href="#participation" class="btn btn-primary">Узнать условия</a>
-                <a href="#contact" class="btn btn-secondary">Связаться с нами</a>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Призы -->
-    <section class="prizes" id="prizes">
         <div class="container">
-            <h2 class="section-title-centered">Призовой фонд</h2>
-            <p class="prizes-lead">Три призовых места — за объём отгруженного керамогранита Vizavi Ceramica. Чем больше проектов, тем ценнее награда.</p>
-
-            <div class="prizes-grid">
-
-                <!-- 1 МЕСТО -->
-                <div class="prize-card first-place">
-                    <div class="prize-image-wrap">
-                        <span class="prize-badge">Главный приз</span>
-                        <div class="prize-rank"><span>1</span></div>
-                        <img
-                            src="https://sosnovoe.ru/wp-content/uploads/2025/05/main-3-1.jpg"
-                            alt="Выходные на курорте «Сосновое»"
-                            class="prize-image"
-                            loading="lazy">
-                    </div>
-                    <div class="prize-body">
-                        <div class="prize-place">1 место</div>
-                        <h3 class="prize-title">Выходные на курорте «Сосновое»</h3>
-                        <p class="prize-description">Выходные для всей семьи на курорте «Сосновое». Перезагрузка среди природы, которая вдохновляет на новые проекты.</p>
+            <div class="vz-hero-inner">
+                <div class="vz-hero-left">
+                    <div class="vz-hero-tag">Конкурс для дизайнеров и архитекторов</div>
+                    <h1>Создавайте проекты<br>с <em>Vizavi Ceramica</em></h1>
+                    <p class="vz-hero-sub">
+                        Выбирайте керамогранит Vizavi для своих проектов — и получайте призы за объём.
+                    </p>
+                    <div class="vz-hero-cta">
+                        <a href="#gallery" class="vz-btn vz-btn-primary">Смотреть коллекции</a>
+                        <a href="#how" class="vz-btn vz-btn-outline-light">Как участвовать</a>
                     </div>
                 </div>
 
-                <!-- 2 МЕСТО -->
-                <div class="prize-card">
-                    <div class="prize-image-wrap">
-                        <div class="prize-rank"><span>2</span></div>
-                        <img
-                            src="https://avatars.mds.yandex.net/i?id=c6e899ecc851dcdccc12260c56ade4a6_l-12499804-images-thumbs&n=13"
-                            alt="Apple Watch Series 11"
-                            class="prize-image"
-                            loading="lazy">
-                    </div>
-                    <div class="prize-body">
-                        <div class="prize-place">2 место</div>
-                        <h3 class="prize-title">Apple Watch Series 11</h3>
-                        <p class="prize-description">Умные часы Apple Watch — стиль и функциональность на вашем запястье.</p>
-                    </div>
-                </div>
-
-                <!-- 3 МЕСТО -->
-                <div class="prize-card">
-                    <div class="prize-image-wrap">
-                        <div class="prize-rank"><span>3</span></div>
-                        <img
-                            src="https://doctorhead.ru/upload/iblock/13b/h2cs7bkdt4ww9usrpbw2kidzpvprpt2d/titul.jpg"
-                            alt="Apple AirPods 4"
-                            class="prize-image"
-                            loading="lazy">
-                    </div>
-                    <div class="prize-body">
-                        <div class="prize-place">3 место</div>
-                        <h3 class="prize-title">Apple AirPods 4</h3>
-                        <p class="prize-description">Изящные беспроводные наушники, которые окутывают кристально чистым звуком, сидят легко и удобно и дарят максимум комфорта в каждом мгновении.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Как участвовать -->
-    <section class="participation" id="participation">
-        <div class="container">
-            <h2 class="section-title-centered">Как участвовать</h2>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h3 class="step-title">Заказывайте керамогранит</h3>
-                    <p class="step-description">Выбирайте керамогранит торговой марки «Vizavi Ceramica» для проектов ваших клиентов.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h3 class="step-title">Система фиксирует отгрузки</h3>
-                    <p class="step-description">Все оплаченные и отгруженные заказы автоматически учитываются в системе.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <h3 class="step-title">Поднимайтесь в рейтинге</h3>
-                    <p class="step-description">Чем больше квадратных метров — тем выше ваша позиция в конкурсе.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">04</div>
-                    <h3 class="step-title">Получайте призы</h3>
-                    <p class="step-description">По итогам конкурса победители получают ценные призы.</p>
-                </div>
-            </div>
-
-            <div class="highlight-text">
-                Никаких заявок и отчётов — только продажи.
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Условия -->
-    <section class="terms" id="terms">
-        <div class="container">
-            <h2 class="section-title-centered">Условия конкурса</h2>
-
-            <ul class="terms-list">
-                <li>Участвуют все дизайнеры и архитекторы, совершившие заказы в период с 1 ноября 2026 по 31 января 2027.</li>
-                <li>Побеждает тот, кто отгрузит больше всего м² керамогранита торговой марки «Vizavi Ceramica».</li>
-                <li>Учитываются только оплаченные и отгруженные заказы в период акции.</li>
-                <li>Участвует только ассортимент торговой марки «Vizavi Ceramica».</li>
-                <li>Система учтёт всё автоматически — вам не нужно ничего заполнять.</li>
-            </ul>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Коллекции -->
-    <section class="collections-showcase" id="collections">
-        <div class="container">
-            <div class="collections-header">
-                <div class="collections-title-block">
-                    <h2 class="section-title">Коллекции Vizavi Ceramica</h2>
-                    <p class="section-subtitle">Качество доступное каждому</p>
-                </div>
-                <a href="https://vizavicatalog.ru/collections" target="_blank" class="catalog-btn">
-                    Весь каталог →
-                </a>
-            </div>
-        </div>
-
-        <div class="carousel-wrapper" id="carouselWrapper">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6462-3231-4535-b366-306565393434/cdc4d5dd0fdd09d0cabe0e2fc17fca32.png" alt="Монолит" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Монолит</div>
-                        <div class="collection-code">MNLIT-11M\B12503</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3030-6366-4139-b666-383631613033/ed3dca6d7ac447665acdbb82f92c88a7.jpg" alt="Скала" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Скала</div>
-                        <div class="collection-code">SKALA-21M\B12909</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6339-3634-4432-b161-376533343630/25b2df7cba2853393bc66790e9ddad3d.jpg" alt="Мантия" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Мантия</div>
-                        <div class="collection-code">MNTYA-11P\B12639</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3064-6537-4932-b733-343734653833/3d53f3efef7d4b6ad07ad4434ddb0398.jpg" alt="Стихия" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Стихия</div>
-                        <div class="collection-code">STHYA-11P\B12606</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3262-3137-4661-a566-373038656361/68391440.jpg" alt="Глыба" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Глыба</div>
-                        <div class="collection-code">GLYBA-11P\D12608</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6265-6664-4137-b132-663537663264/3e6f0c31a50f2593857539fba19637c9.jpg" alt="Аура" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Аура</div>
-                        <div class="collection-code">AURA-11P\D12603</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3934-3337-4637-b763-373738326339/493422845d403f3518431e635368958e.jpg" alt="Холст" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Холст</div>
-                        <div class="collection-code">HOLST-11P\L12614</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6238-3765-4261-b631-343231336332/6b3dd070e8bb57e6e2a8d83ec9f93433.jpg" alt="Минерал" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Минерал</div>
-                        <div class="collection-code">MNRAL-21P\L12630</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6166-3563-4437-a239-663438633032/03e3105ceae8465ce951d7e6e1e9d107.jpg" alt="Дипломат" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Дипломат</div>
-                        <div class="collection-code">DPLMT-21P\L12632</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3836-3261-4335-b935-386634663134/8c981a820456ff6b0f953b75494c41e8.jpg" alt="Гранула" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Гранула</div>
-                        <div class="collection-code">GRNUL-11M\B12514</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3762-6438-4634-b865-356432343262/73fe9983b8a85cf698016a9cb6d4f9b6.jpg" alt="Плато" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Плато</div>
-                        <div class="collection-code">PLATO-11K\BJ12596</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6431-6333-4434-b634-306163636435/3c1778a28c00119bc8bc50f350074ab6.jpg" alt="Бархан" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Бархан</div>
-                        <div class="collection-code">BRHAN-11K\DJ12587</div>
-                    </div>
-                </div>
-
-                <!-- Дубли для бесшовного цикла -->
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6462-3231-4535-b366-306565393434/cdc4d5dd0fdd09d0cabe0e2fc17fca32.png" alt="Монолит" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Монолит</div>
-                        <div class="collection-code">MNLIT-11M\B12503</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3030-6366-4139-b666-383631613033/ed3dca6d7ac447665acdbb82f92c88a7.jpg" alt="Скала" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Скала</div>
-                        <div class="collection-code">SKALA-21M\B12909</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6339-3634-4432-b161-376533343630/25b2df7cba2853393bc66790e9ddad3d.jpg" alt="Мантия" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Мантия</div>
-                        <div class="collection-code">MNTYA-11P\B12639</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3064-6537-4932-b733-343734653833/3d53f3efef7d4b6ad07ad4434ddb0398.jpg" alt="Стихия" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Стихия</div>
-                        <div class="collection-code">STHYA-11P\B12606</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3262-3137-4661-a566-373038656361/68391440.jpg" alt="Глыба" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Глыба</div>
-                        <div class="collection-code">GLYBA-11P\D12608</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6265-6664-4137-b132-663537663264/3e6f0c31a50f2593857539fba19637c9.jpg" alt="Аура" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Аура</div>
-                        <div class="collection-code">AURA-11P\D12603</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3934-3337-4637-b763-373738326339/493422845d403f3518431e635368958e.jpg" alt="Холст" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Холст</div>
-                        <div class="collection-code">HOLST-11P\L12614</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6238-3765-4261-b631-343231336332/6b3dd070e8bb57e6e2a8d83ec9f93433.jpg" alt="Минерал" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Минерал</div>
-                        <div class="collection-code">MNRAL-21P\L12630</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6166-3563-4437-a239-663438633032/03e3105ceae8465ce951d7e6e1e9d107.jpg" alt="Дипломат" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Дипломат</div>
-                        <div class="collection-code">DPLMT-21P\L12632</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3836-3261-4335-b935-386634663134/8c981a820456ff6b0f953b75494c41e8.jpg" alt="Гранула" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Гранула</div>
-                        <div class="collection-code">GRNUL-11M\B12514</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor3762-6438-4634-b865-356432343262/73fe9983b8a85cf698016a9cb6d4f9b6.jpg" alt="Плато" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Плато</div>
-                        <div class="collection-code">PLATO-11K\BJ12596</div>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <a href="https://vizavicatalog.ru/collections" target="_blank" class="collection-link">
-                        <img src="https://static.tildacdn.com/stor6431-6333-4434-b634-306163636435/3c1778a28c00119bc8bc50f350074ab6.jpg" alt="Бархан" class="collection-image">
-                    </a>
-                    <div class="collection-info">
-                        <div class="collection-name">Бархан</div>
-                        <div class="collection-code">BRHAN-11K\DJ12587</div>
+                <div class="vz-hero-right">
+                    <div class="vz-timer-card">
+                        <div class="vz-timer-label">До конца конкурса</div>
+                        <div class="vz-timer-grid">
+                            <div class="vz-timer-cell">
+                                <span class="vz-timer-num" id="vzD">00</span>
+                                <span>Дней</span>
+                            </div>
+                            <div class="vz-timer-cell">
+                                <span class="vz-timer-num" id="vzH">00</span>
+                                <span>Часов</span>
+                            </div>
+                            <div class="vz-timer-cell">
+                                <span class="vz-timer-num" id="vzM">00</span>
+                                <span>Минут</span>
+                            </div>
+                            <div class="vz-timer-cell">
+                                <span class="vz-timer-num" id="vzS">00</span>
+                                <span>Секунд</span>
+                            </div>
+                        </div>
+                        <div class="vz-timer-cta">
+                            Приём заказов до <strong>31 января 2027</strong>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- TEXT MARQUEE -->
+    <div class="vz-marquee">
+        <div class="vz-marquee-track">
+            <div class="vz-marquee-item">Монолит</div>
+            <div class="vz-marquee-item">Сиенна</div>
+            <div class="vz-marquee-item">Гранула</div>
+            <div class="vz-marquee-item">Дипломат</div>
+            <div class="vz-marquee-item">Глыба</div>
+            <div class="vz-marquee-item">Холст</div>
+            <div class="vz-marquee-item">Стихия</div>
+            <div class="vz-marquee-item">Плато</div>
+            <div class="vz-marquee-item">Цемент</div>
+            <div class="vz-marquee-item">Бархан</div>
+            <div class="vz-marquee-item">Карнавал</div>
+            <div class="vz-marquee-item">Скала</div>
+            <div class="vz-marquee-item">Нюанс</div>
+            <div class="vz-marquee-item">Минерал</div>
+            <div class="vz-marquee-item">Аура</div>
+            <div class="vz-marquee-item">Мантия</div>
+            <div class="vz-marquee-item">Традиция</div>
+            <div class="vz-marquee-item">Ручей</div>
+            <div class="vz-marquee-item">Каньон</div>
+            <div class="vz-marquee-item">Пепел</div>
+            <div class="vz-marquee-item">Кратер</div>
+            <div class="vz-marquee-item">Монохром</div>
+            <div class="vz-marquee-item">Карьер</div>
+            <div class="vz-marquee-item">Проспект</div>
+            <div class="vz-marquee-item">Монолит</div>
+            <div class="vz-marquee-item">Сиенна</div>
+            <div class="vz-marquee-item">Гранула</div>
+            <div class="vz-marquee-item">Дипломат</div>
+            <div class="vz-marquee-item">Глыба</div>
+            <div class="vz-marquee-item">Холст</div>
+            <div class="vz-marquee-item">Стихия</div>
+            <div class="vz-marquee-item">Плато</div>
+            <div class="vz-marquee-item">Цемент</div>
+            <div class="vz-marquee-item">Бархан</div>
+            <div class="vz-marquee-item">Карнавал</div>
+            <div class="vz-marquee-item">Скала</div>
+            <div class="vz-marquee-item">Нюанс</div>
+            <div class="vz-marquee-item">Минерал</div>
+            <div class="vz-marquee-item">Аура</div>
+            <div class="vz-marquee-item">Мантия</div>
+            <div class="vz-marquee-item">Традиция</div>
+            <div class="vz-marquee-item">Ручей</div>
+            <div class="vz-marquee-item">Каньон</div>
+            <div class="vz-marquee-item">Пепел</div>
+            <div class="vz-marquee-item">Кратер</div>
+            <div class="vz-marquee-item">Монохром</div>
+            <div class="vz-marquee-item">Карьер</div>
+            <div class="vz-marquee-item">Проспект</div>
+        </div>
+    </div>
 
-    <!-- ===== Блок с контактами ===== -->
-    <section class="contact-block" id="contact">
+    <!-- GALLERY -->
+    <section class="vz-gallery-section" id="gallery">
         <div class="container">
-            <div class="contact-inner">
-                <div class="contact-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
-                              stroke="currentColor" stroke-width="2"
-                              stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+            <div class="vz-gallery-head" data-reveal>
+                <h2>Керамогранит, который работает на ваш проект</h2>
+                <a href="https://vizavicatalog.ru/page102099206.html" target="_blank" class="vz-btn vz-btn-outline-light" style="color: var(--ink); border-color: var(--border);">Весь каталог →</a>
+            </div>
+
+            <div class="vz-gallery-grid" id="vzGallery">
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="1"
+                    data-img="https://static.tildacdn.com/stor3737-3038-4139-b830-646237343364/3f60c28f71fac4908d7199735054f8bf.jpg"
+                    data-name="Дипломат">
+                    <img src="https://static.tildacdn.com/stor3737-3038-4139-b830-646237343364/3f60c28f71fac4908d7199735054f8bf.jpg" alt="Дипломат" loading="eager" decoding="async">
+                    <div class="vz-gallery-info"><h4>Дипломат</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="2"
+                    data-img="https://static.tildacdn.com/stor3930-6639-4036-a337-663664386566/d6ba24878c54cbc8b4787858c5850462.jpg"
+                    data-name="Монолит">
+                    <img src="https://static.tildacdn.com/stor3930-6639-4036-a337-663664386566/d6ba24878c54cbc8b4787858c5850462.jpg" alt="Монолит" loading="eager" decoding="async">
+                    <div class="vz-gallery-info"><h4>Монолит</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="3"
+                    data-img="https://static.tildacdn.com/stor3965-3361-4935-a336-336266363963/04f97a287da92a24c0c4bee3a0334b87.jpg"
+                    data-name="Сиенна">
+                    <img src="https://static.tildacdn.com/stor3965-3361-4935-a336-336266363963/04f97a287da92a24c0c4bee3a0334b87.jpg" alt="Сиенна" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Сиенна</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="4"
+                    data-img="https://static.tildacdn.com/stor3537-6465-4532-a563-333033343466/eac0be369535206941389d59fa0b835c.jpg"
+                    data-name="Гранула">
+                    <img src="https://static.tildacdn.com/stor3537-6465-4532-a563-333033343466/eac0be369535206941389d59fa0b835c.jpg" alt="Гранула" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Гранула</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal
+                    data-img="https://static.tildacdn.com/stor3163-6430-4465-a434-363966346230/349f13cf87a17890e3fca2f3d545dd26.jpg"
+                    data-name="Глыба">
+                    <img src="https://static.tildacdn.com/stor3163-6430-4465-a434-363966346230/349f13cf87a17890e3fca2f3d545dd26.jpg" alt="Глыба" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Глыба</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="1"
+                    data-img="https://static.tildacdn.com/stor3462-6339-4162-b136-396664623763/7b6cca64058d8149ab7cb55d332c506f.png"
+                    data-name="Холст">
+                    <img src="https://static.tildacdn.com/stor3462-6339-4162-b136-396664623763/7b6cca64058d8149ab7cb55d332c506f.png" alt="Холст" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Холст</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="2"
+                    data-img="https://static.tildacdn.com/stor3430-6538-4635-b366-353163376132/f1e94e2980d742a21063c6108e247086.jpg"
+                    data-name="Стихия">
+                    <img src="https://static.tildacdn.com/stor3430-6538-4635-b366-353163376132/f1e94e2980d742a21063c6108e247086.jpg" alt="Стихия" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Стихия</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="3"
+                    data-img="https://static.tildacdn.com/tild3866-3861-4865-a339-633633346463/d650797118bfd0c7abc2.png"
+                    data-name="Плато">
+                    <img src="https://static.tildacdn.com/tild3866-3861-4865-a339-633633346463/d650797118bfd0c7abc2.png" alt="Плато" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Плато</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="4"
+                    data-img="https://static.tildacdn.com/stor3635-3034-4563-a434-343765353133/b0f8a67b8df9ed545d0d288bd72233a1.jpg"
+                    data-name="Цемент">
+                    <img src="https://static.tildacdn.com/stor3635-3034-4563-a434-343765353133/b0f8a67b8df9ed545d0d288bd72233a1.jpg" alt="Цемент" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Цемент</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal
+                    data-img="https://static.tildacdn.com/tild6538-6236-4435-a336-376639363166/f3174b3c0122e3bd0bdb.png"
+                    data-name="Бархан">
+                    <img src="https://static.tildacdn.com/tild6538-6236-4435-a336-376639363166/f3174b3c0122e3bd0bdb.png" alt="Бархан" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Бархан</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="1"
+                    data-img="https://static.tildacdn.com/stor3739-3266-4435-b466-313530623861/fd5aae3d517bfa4c1263577c77dd9d04.jpg"
+                    data-name="Карнавал">
+                    <img src="https://static.tildacdn.com/stor3739-3266-4435-b466-313530623861/fd5aae3d517bfa4c1263577c77dd9d04.jpg" alt="Карнавал" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Карнавал</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="2"
+                    data-img="https://static.tildacdn.com/stor6565-3733-4962-b938-626532633138/794aaa6d7ed00ffdbd64f9fa89f8d211.jpg"
+                    data-name="Скала">
+                    <img src="https://static.tildacdn.com/stor6565-3733-4962-b938-626532633138/794aaa6d7ed00ffdbd64f9fa89f8d211.jpg" alt="Скала" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Скала</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="3"
+                    data-img="https://static.tildacdn.com/stor3235-3561-4366-a333-346261303636/86d2e020447cc74706ebdd141a7f3e21.jpg"
+                    data-name="Мантия">
+                    <img src="https://static.tildacdn.com/stor3235-3561-4366-a333-346261303636/86d2e020447cc74706ebdd141a7f3e21.jpg" alt="Мантия" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Мантия</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="4"
+                    data-img="https://static.tildacdn.com/stor3539-3230-4561-a234-343662353436/053c5123ce2fe353215a27821ccacb30.jpg"
+                    data-name="Традиция">
+                    <img src="https://static.tildacdn.com/stor3539-3230-4561-a234-343662353436/053c5123ce2fe353215a27821ccacb30.jpg" alt="Традиция" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Традиция</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal
+                    data-img="https://static.tildacdn.com/stor6664-3831-4161-b032-363966636231/25688e0390bb98e7655631d2c013d300.jpg"
+                    data-name="Ручей">
+                    <img src="https://static.tildacdn.com/stor6664-3831-4161-b032-363966636231/25688e0390bb98e7655631d2c013d300.jpg" alt="Ручей" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Ручей</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="1"
+                    data-img="https://static.tildacdn.com/tild3434-6137-4232-b765-313461336135/e3a36113442f824a09c0.png"
+                    data-name="Каньон">
+                    <img src="https://static.tildacdn.com/tild3434-6137-4232-b765-313461336135/e3a36113442f824a09c0.png" alt="Каньон" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Каньон</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="2"
+                    data-img="https://static.tildacdn.com/tild6136-3061-4464-b230-633038663834/5938f3998faa2bd0635a.png"
+                    data-name="Пепел">
+                    <img src="https://static.tildacdn.com/tild6136-3061-4464-b230-633038663834/5938f3998faa2bd0635a.png" alt="Пепел" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Пепел</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="3"
+                    data-img="https://static.tildacdn.com/stor6130-6635-4265-b862-336632303634/c6874926d2b485b5dae80648e2e6af07.jpg"
+                    data-name="Кратер">
+                    <img src="https://static.tildacdn.com/stor6130-6635-4265-b862-336632303634/c6874926d2b485b5dae80648e2e6af07.jpg" alt="Кратер" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Кратер</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="4"
+                    data-img="https://static.tildacdn.com/tild6238-3036-4132-b535-303838353466/ZA-D12607.jpg"
+                    data-name="Аура">
+                    <img src="https://static.tildacdn.com/tild6238-3036-4132-b535-303838353466/ZA-D12607.jpg" alt="Аура" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Аура</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal
+                    data-img="https://static.tildacdn.com/tild6261-6363-4634-a639-356437396535/ZA-B60911.png"
+                    data-name="Монохром">
+                    <img src="https://static.tildacdn.com/tild6261-6363-4634-a639-356437396535/ZA-B60911.png" alt="Монохром" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Монохром</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="1"
+                    data-img="https://static.tildacdn.com/tild3862-3032-4164-b761-396531633834/B60303.jpg"
+                    data-name="Нюанс">
+                    <img src="https://static.tildacdn.com/tild3862-3032-4164-b761-396531633834/B60303.jpg" alt="Нюанс" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Нюанс</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="2"
+                    data-img="https://static.tildacdn.com/tild3361-6261-4366-b235-393830363165/L12630_.png"
+                    data-name="Минерал">
+                    <img src="https://static.tildacdn.com/tild3361-6261-4366-b235-393830363165/L12630_.png" alt="Минерал" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Минерал</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="3"
+                    data-img="https://static.tildacdn.com/tild6630-3665-4130-b435-353530653431/ZA-L12528.png"
+                    data-name="Карьер">
+                    <img src="https://static.tildacdn.com/tild6630-3665-4130-b435-353530653431/ZA-L12528.png" alt="Карьер" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Карьер</h4></div>
+                </button>
+
+                <button class="vz-gallery-item" data-reveal data-reveal-delay="4"
+                    data-img="https://static.tildacdn.com/tild6638-3030-4630-a232-396364646233/B60924.jpg"
+                    data-name="Проспект">
+                    <img src="https://static.tildacdn.com/tild6638-3030-4630-a232-396364646233/B60924.jpg" alt="Проспект" loading="lazy" decoding="async">
+                    <div class="vz-gallery-info"><h4>Проспект</h4></div>
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PRIZES -->
+    <section class="vz-prizes" id="prizes">
+        <div class="container">
+
+            <div class="vz-prizes-head" data-reveal>
+                <div class="vz-prizes-eyebrow">Призовой фонд</div>
+                <h2 class="vz-prizes-title">Три причины<br>продавать <em>Vizavi</em></h2>
+                <p class="vz-prizes-subtitle">Чем больше м² отгружено за период акции — тем ценнее ваша награда. Три призовых места.</p>
+            </div>
+
+            <div class="vz-prizes-grid">
+
+                <div class="vz-prize-dark vz-prize-dark--first" data-reveal data-reveal-delay="1">
+                    <div class="vz-prize-dark-img">
+                        <span class="vz-prize-dark-badge">Главный приз</span>
+                        <img src="https://sosnovoe.ru/wp-content/uploads/2025/05/main-3-1.jpg" alt="Курорт Сосновое" loading="lazy">
+                        <div class="vz-prize-dark-rank">
+                            <span class="vz-prize-dark-rank-num">01</span>
+                        </div>
+                    </div>
+                    <div class="vz-prize-dark-body">
+                        <h3>Выходные на курорте «Сосновое»</h3>
+                        <p>Природа, которая вдохновляет на новые проекты — заслуженная перезагрузка после активного сезона.</p>
+                    </div>
                 </div>
 
-                <h2 class="contact-title">Остались вопросы?</h2>
-                <p class="contact-subtitle">
-                    Позвоните нам — расскажем об условиях конкурса, поможем с выбором коллекций и подскажем адреса салонов.
-                </p>
+                <div class="vz-prize-dark" data-reveal data-reveal-delay="2">
+                    <div class="vz-prize-dark-img">
+                        <img src="https://avatars.mds.yandex.net/i?id=c6e899ecc851dcdccc12260c56ade4a6_l-12499804-images-thumbs&n=13" alt="Apple Watch SE 3" loading="lazy">
+                        <div class="vz-prize-dark-rank">
+                            <span class="vz-prize-dark-rank-num">02</span>
+                        </div>
+                    </div>
+                    <div class="vz-prize-dark-body">
+                        <h3>Apple Watch SE 3</h3>
+                        <p>Стиль и функциональность на вашем запястье.</p>
+                    </div>
+                </div>
 
-                <a href="tel:88005550052" class="contact-phone">8 (800) 555-00-52</a>
+                <div class="vz-prize-dark" data-reveal data-reveal-delay="3">
+                    <div class="vz-prize-dark-img">
+                        <img src="https://doctorhead.ru/upload/iblock/13b/h2cs7bkdt4ww9usrpbw2kidzpvprpt2d/titul.jpg" alt="Apple AirPods 4" loading="lazy">
+                        <div class="vz-prize-dark-rank">
+                            <span class="vz-prize-dark-rank-num">03</span>
+                        </div>
+                    </div>
+                    <div class="vz-prize-dark-body">
+                        <h3>Apple AirPods 4</h3>
+                        <p>Кристально чистый звук и максимум комфорта.</p>
+                    </div>
+                </div>
 
-                <div class="contact-note">
-                    Бесплатный звонок по России · пн–пт: 09:00–20:00
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS + TERMS -->
+    <section class="vz-section vz-how-section" id="how">
+        <div class="container">
+            <div class="vz-section-head centered" data-reveal>
+                <h2>Как участвовать</h2>
+                <p class="vz-section-desc">Всё учитывается автоматически — вам остаётся только выбирать Vizavi для своих проектов.</p>
+            </div>
+
+            <div class="vz-steps">
+                <div class="vz-step" data-reveal data-reveal-delay="1">
+                    <div class="vz-step-num">01</div>
+                    <h3>Выбирайте Vizavi</h3>
+                    <p>Для проектов ваших клиентов.</p>
+                </div>
+                <div class="vz-step" data-reveal data-reveal-delay="2">
+                    <div class="vz-step-num">02</div>
+                    <h3>Система фиксирует</h3>
+                    <p>Все оплаченные и отгруженные заказы.</p>
+                </div>
+                <div class="vz-step" data-reveal data-reveal-delay="3">
+                    <div class="vz-step-num">03</div>
+                    <h3>Растите в рейтинге</h3>
+                    <p>Чем больше м² — тем выше позиция.</p>
+                </div>
+                <div class="vz-step" data-reveal data-reveal-delay="4">
+                    <div class="vz-step-num">04</div>
+                    <h3>Получайте призы</h3>
+                    <p>Победители — по объёму отгрузки.</p>
+                </div>
+            </div>
+
+            <div class="vz-conditions" data-reveal>
+                <div class="vz-conditions-header">
+                    <div class="vz-conditions-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                    </div>
+                    <div class="vz-conditions-title-block">
+                        <span class="vz-conditions-label">Условия конкурса</span>
+                        <h3 class="vz-conditions-title">Что важно знать перед участием</h3>
+                    </div>
+                </div>
+
+                <ul class="vz-conditions-list">
+                    <li data-reveal data-reveal-delay="1">Участвуют дизайнеры и архитекторы, оформившие заказы в салонах Vizavi ceramica с 1 ноября 2026 по 31 января 2027.</li>
+                    <li data-reveal data-reveal-delay="2">Побеждает тот, кто отгрузит больше всего м² керамогранита Vizavi Ceramica.</li>
+                    <li data-reveal data-reveal-delay="3">Учитываются только оплаченные и отгруженные заказы в период акции.</li>
+                    <li data-reveal data-reveal-delay="4">Участвует только ассортимент торговой марки Vizavi Ceramica.</li>
+                    <li data-reveal data-reveal-delay="4">Система учтёт всё автоматически — заполнять ничего не нужно.</li>
+                </ul>
+
+                <div class="vz-conditions-footer">
+                    <div class="vz-conditions-footer-text">
+                        Начните продавать Vizavi уже сейчас — чем раньше, тем выше шансы.
+                    </div>
+                    <div class="vz-conditions-footer-badge">Приём заказов открыт</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- TILE STRIP (без шапки) -->
+    <div class="vz-tile-strip">
+        <div class="vz-tile-row vz-tile-row--ltr">
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6462-3231-4535-b366-306565393434/cdc4d5dd0fdd09d0cabe0e2fc17fca32.png" alt="Монолит" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3030-6366-4139-b666-383631613033/ed3dca6d7ac447665acdbb82f92c88a7.jpg" alt="Скала" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6339-3634-4432-b161-376533343630/25b2df7cba2853393bc66790e9ddad3d.jpg" alt="Мантия" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3064-6537-4932-b733-343734653833/3d53f3efef7d4b6ad07ad4434ddb0398.jpg" alt="Стихия" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3262-3137-4661-a566-373038656361/68391440.jpg" alt="Глыба" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6265-6664-4137-b132-663537663264/3e6f0c31a50f2593857539fba19637c9.jpg" alt="Аура" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3934-3337-4637-b763-373738326339/493422845d403f3518431e635368958e.jpg" alt="Холст" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6238-3765-4261-b631-343231336332/6b3dd070e8bb57e6e2a8d83ec9f93433.jpg" alt="Минерал" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6166-3563-4437-a239-663438633032/03e3105ceae8465ce951d7e6e1e9d107.jpg" alt="Дипломат" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3836-3261-4335-b935-386634663134/8c981a820456ff6b0f953b75494c41e8.jpg" alt="Гранула" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3762-6438-4634-b865-356432343262/73fe9983b8a85cf698016a9cb6d4f9b6.jpg" alt="Плато" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6431-6333-4434-b634-306163636435/3c1778a28c00119bc8bc50f350074ab6.jpg" alt="Бархан" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6462-3231-4535-b366-306565393434/cdc4d5dd0fdd09d0cabe0e2fc17fca32.png" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3030-6366-4139-b666-383631613033/ed3dca6d7ac447665acdbb82f92c88a7.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6339-3634-4432-b161-376533343630/25b2df7cba2853393bc66790e9ddad3d.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3064-6537-4932-b733-343734653833/3d53f3efef7d4b6ad07ad4434ddb0398.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3262-3137-4661-a566-373038656361/68391440.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6265-6664-4137-b132-663537663264/3e6f0c31a50f2593857539fba19637c9.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3934-3337-4637-b763-373738326339/493422845d403f3518431e635368958e.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6238-3765-4261-b631-343231336332/6b3dd070e8bb57e6e2a8d83ec9f93433.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6166-3563-4437-a239-663438633032/03e3105ceae8465ce951d7e6e1e9d107.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3836-3261-4335-b935-386634663134/8c981a820456ff6b0f953b75494c41e8.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3762-6438-4634-b865-356432343262/73fe9983b8a85cf698016a9cb6d4f9b6.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6431-6333-4434-b634-306163636435/3c1778a28c00119bc8bc50f350074ab6.jpg" alt="" loading="lazy" decoding="async"></div>
+        </div>
 
-    <!-- Адреса салонов -->
-    <section class="locations" id="locations">
+        <div class="vz-tile-row vz-tile-row--rtl">
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3039-3536-4164-b166-333336633130/3bfae5bb95c8318b74ebe89111c10731.jpg" alt="Цемент" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6237-3465-4232-a661-303964323565/3e98aba52e90f78a2b9cb04be7ab575a.jpg" alt="Сиенна" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3130-3662-4263-b866-356466326437/c54101386f46a3b700e01e4fdffad66c.jpg" alt="Кратер" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3432-3631-4233-b936-613332373262/bfec93c9dd70d4da07861d74fb4ac14f.jpg" alt="Каньон" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3634-3330-4531-b332-386135633566/96cfe2bfbbc133d53a27da29b8ba68d6.jpg" alt="Карнавал" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3466-3930-4438-a136-323265366262/ce9d156328550761c1a0b434bda590f4.jpg" alt="Нюанс" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6532-3966-4735-b661-386561643736/9b085a3b29e2a40f360f3a3f959a074a.jpg" alt="Традиция" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3034-3434-4966-b239-653163333237/5e5bb31d879c8f41aed6cde2d5075f49.jpg" alt="Ручей" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6562-6635-4138-b439-313261643862/8757cc89a8c7b097247e595625399c84.jpg" alt="Пепел" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3434-6162-4439-b636-653565386664/b5c21273d6de9f6a33f66ec6a232b514.jpg" alt="Монохром" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3061-6666-4432-b365-333336323266/554df2c99caf70e06f4ae20c3bcfc629.jpg" alt="Карьер" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3231-3962-4632-b664-373861633430/88a15301eaf145a43a8fbee0f379b42d.jpg" alt="Проспект" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3039-3536-4164-b166-333336633130/3bfae5bb95c8318b74ebe89111c10731.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6237-3465-4232-a661-303964323565/3e98aba52e90f78a2b9cb04be7ab575a.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3130-3662-4263-b866-356466326437/c54101386f46a3b700e01e4fdffad66c.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3432-3631-4233-b936-613332373262/bfec93c9dd70d4da07861d74fb4ac14f.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3634-3330-4531-b332-386135633566/96cfe2bfbbc133d53a27da29b8ba68d6.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3466-3930-4438-a136-323265366262/ce9d156328550761c1a0b434bda590f4.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6532-3966-4735-b661-386561643736/9b085a3b29e2a40f360f3a3f959a074a.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3034-3434-4966-b239-653163333237/5e5bb31d879c8f41aed6cde2d5075f49.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor6562-6635-4138-b439-313261643862/8757cc89a8c7b097247e595625399c84.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3434-6162-4439-b636-653565386664/b5c21273d6de9f6a33f66ec6a232b514.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3061-6666-4432-b365-333336323266/554df2c99caf70e06f4ae20c3bcfc629.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="vz-tile"><img src="https://static.tildacdn.com/stor3231-3962-4632-b664-373861633430/88a15301eaf145a43a8fbee0f379b42d.jpg" alt="" loading="lazy" decoding="async"></div>
+        </div>
+    </div>
+
+    <!-- ===== VISIT — объединённый блок контактов и адресов ===== -->
+    <section class="vz-visit" id="visit">
         <div class="container">
-            <h2 class="section-title-centered">Адреса салонов</h2>
+            <div class="vz-visit-panel" data-reveal>
 
-            <div class="locations-grid">
-                <div class="location-card">
-                    <h3 class="location-title">Салон на Дыбенко</h3>
-                    <div class="location-address">
-                        г. Самара, ул. Дыбенко, д. 98
+                <!-- Левая колонка: контакт -->
+                <div class="vz-visit-contact">
+                    <div class="vz-visit-contact-inner">
+                        <div class="vz-visit-eyebrow">Остались вопросы</div>
+                        <h2>Расскажем<br>об условиях</h2>
+                        <p>Позвоните — подскажем по конкурсу, поможем с выбором коллекций и ответим на ваши вопросы.</p>
+
+                        <a href="tel:88005550052" class="vz-visit-phone">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            8 (800) 555-00-52
+                        </a>
+
+                        <div class="vz-visit-hours">
+                            Бесплатно по России · пн–пт 09:00–20:00
+                        </div>
                     </div>
-                    <div class="location-hours">
-                        пн–вс: 10:00–20:00
-                    </div>
-                    <a href="https://yandex.ru/maps/?text=Самара, ул. Дыбенко, 98" target="_blank" class="location-map-btn">Показать на карте →</a>
                 </div>
 
-                <div class="location-card">
-                    <h3 class="location-title">ЦДИР «Кубатура»</h3>
-                    <div class="location-address">
-                        г. Самара, ул. Красноармейская, 1,<br>
-                        торговый корпус № 3, секция № 105, этаж 1
+                <!-- Правая колонка: адреса -->
+                <div class="vz-visit-locations">
+                    <div class="vz-visit-locations-head">
+                        <h3>Приглашаем посетить наши салоны</h3>
+                        <span>2 шоурума</span>
                     </div>
-                    <div class="location-hours">
-                        пн–вс: 09:00–20:00
+
+                    <div class="vz-visit-locations-list">
+                        <div class="vz-visit-loc">
+                            <div class="vz-visit-loc-num">01</div>
+                            <h4>Салон на Дыбенко</h4>
+                            <p>г. Самара, ул. Дыбенко, д. 98</p>
+                            <div class="vz-visit-loc-hours">пн–вс 10:00–20:00</div>
+                            <a href="https://yandex.ru/maps/?text=Самара, ул. Дыбенко, 98" target="_blank" class="vz-visit-loc-btn">
+                                На карте
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="vz-visit-loc">
+                            <div class="vz-visit-loc-num">02</div>
+                            <h4>ЦДИР «Кубатура»</h4>
+                            <p>г. Самара, ул. Красноармейская, 1, корпус № 3, секция № 105</p>
+                            <div class="vz-visit-loc-hours">пн–вс 09:00–20:00</div>
+                            <a href="https://yandex.ru/maps/?text=Самара, ул. Красноармейская, 1" target="_blank" class="vz-visit-loc-btn">
+                                На карте
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <a href="https://yandex.ru/maps/?text=Самара, ул. Красноармейская, 1" target="_blank" class="location-map-btn">Показать на карте →</a>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Футер -->
-    <footer class="footer">
+    <!-- FOOTER -->
+    <footer class="vz-footer">
         <div class="container">
-            <div class="footer-links">
-                <a href="https://vizavicatalog.ru" target="_blank" class="footer-link">Каталог</a>
-                <a href="https://vizaviceramica.ru" target="_blank" class="footer-link">Основной сайт</a>
-                <a href="#contact" class="footer-link">Контакты</a>
+            <div class="vz-footer-links">
+                <a href="https://vizavicatalog.ru" target="_blank">Каталог</a>
+                <a href="https://vizaviceramica.ru" target="_blank">Основной сайт</a>
+                <a href="#visit">Контакты</a>
             </div>
-
-            <p class="footer-copyright">
-                © 2026 Vizavi Ceramica. Все права защищены.<br>
-                Совершенствуем мир вокруг нас.
-            </p>
+            <p class="vz-footer-copy">© 2026 Vizavi Ceramica. Все права защищены.<br>Совершенствуем мир вокруг нас.</p>
         </div>
     </footer>
 
 </div>
 
+<!-- LIGHTBOX -->
+<div class="vz-lightbox" id="vzLightbox">
+    <button class="vz-lightbox-close" id="vzLbClose" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+    </button>
+    <button class="vz-lightbox-nav vz-lightbox-prev" id="vzLbPrev" aria-label="Предыдущее">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+        </svg>
+    </button>
+    <button class="vz-lightbox-nav vz-lightbox-next" id="vzLbNext" aria-label="Следующее">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6"/>
+        </svg>
+    </button>
+    <div class="vz-lightbox-img-wrap">
+        <img id="vzLbImg" src="" alt="">
+        <div class="vz-lightbox-caption">
+            <h4 id="vzLbName"></h4>
+        </div>
+    </div>
+</div>
+
 <script>
-    // ===== Таймер обратного отсчёта =====
-    function initCountdown() {
-        const endDate = new Date('2027-01-31T23:59:59').getTime();
+(function(){
+    // ===== COUNTDOWN =====
+    var end = new Date('2027-01-31T23:59:59').getTime();
+    var d = document.getElementById('vzD'),
+        h = document.getElementById('vzH'),
+        m = document.getElementById('vzM'),
+        s = document.getElementById('vzS');
 
-        const daysEl = document.getElementById('days');
-        const hoursEl = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
+    function tick(){
+        var now = Date.now(), dist = end - now;
+        if (dist < 0) { d.textContent = h.textContent = m.textContent = s.textContent = '00'; return; }
 
-        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+        var dd = Math.floor(dist / 86400000),
+            hh = Math.floor(dist % 86400000 / 3600000),
+            mm = Math.floor(dist % 3600000 / 60000),
+            ss = Math.floor(dist % 60000 / 1000);
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = endDate - now;
+        function set(el, v){
+            var f = String(v).padStart(2,'0');
+            if (el.textContent !== f){
+                el.style.transform = 'scale(1.2) translateY(-4px)';
+                el.textContent = f;
+                setTimeout(function(){ el.style.transform = 'scale(1) translateY(0)'; }, 200);
+            }
+        }
+        set(d, dd); set(h, hh); set(m, mm); set(s, ss);
+    }
+    tick();
+    setInterval(tick, 1000);
 
-            if (distance < 0) {
-                daysEl.textContent = '00';
-                hoursEl.textContent = '00';
-                minutesEl.textContent = '00';
-                secondsEl.textContent = '00';
+    // ===== PROGRESS =====
+    var progress = document.getElementById('vzProgress');
+    function updateProgress(){
+        var scrollTop = window.pageYOffset;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progress.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    // ===== HEADER =====
+    var header = document.getElementById('vzHeader');
+    window.addEventListener('scroll', function(){
+        if (window.pageYOffset > 60) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    }, { passive: true });
+
+    // ===== REVEAL =====
+    var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+            if (e.isIntersecting){
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('.vz a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+            var href = this.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            var t = document.querySelector(href);
+            if (t){
+                var top = t.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ===== MAGNETIC BUTTONS =====
+    document.querySelectorAll('.vz-btn-primary, .vz-btn-outline-light').forEach(function(btn){
+        btn.addEventListener('mousemove', function(e){
+            var rect = this.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+            this.style.transform = 'translate(' + (x * 0.12) + 'px, ' + (y * 0.12 - 2) + 'px)';
+        });
+        btn.addEventListener('mouseleave', function(){ this.style.transform = ''; });
+    });
+
+    // ===== LIGHTBOX =====
+    var galleryItems = Array.prototype.slice.call(document.querySelectorAll('.vz-gallery-item'));
+    var lightbox = document.getElementById('vzLightbox');
+    var lbImg = document.getElementById('vzLbImg');
+    var lbName = document.getElementById('vzLbName');
+    var lbClose = document.getElementById('vzLbClose');
+    var lbPrev = document.getElementById('vzLbPrev');
+    var lbNext = document.getElementById('vzLbNext');
+    var currentIndex = 0;
+
+    function setLbContent(item){
+        lbImg.src = item.getAttribute('data-img');
+        lbImg.alt = item.getAttribute('data-name');
+        lbName.textContent = item.getAttribute('data-name');
+    }
+
+    function openLightbox(index){
+        currentIndex = index;
+        setLbContent(galleryItems[index]);
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(){
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function showPrev(){
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        setLbContent(galleryItems[currentIndex]);
+    }
+
+    function showNext(){
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        setLbContent(galleryItems[currentIndex]);
+    }
+
+    galleryItems.forEach(function(item, i){
+        item.addEventListener('click', function(){ openLightbox(i); });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', showPrev);
+    lbNext.addEventListener('click', showNext);
+
+    lightbox.addEventListener('click', function(e){
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e){
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+    });
+
+    // ===== SPOTLIGHT ANIMATION (FLIP) =====
+    var galleryGrid = document.getElementById('vzGallery');
+    var gridItems = Array.prototype.slice.call(galleryGrid.querySelectorAll('.vz-gallery-item'));
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isAnimating = false;
+    var isPaused = false;
+    var SPOTLIGHT_INTERVAL = 3500;
+    var ANIM_DURATION = 1000;
+
+    function isNeighborByIndex(a, b){
+        return Math.abs(a - b) === 1;
+    }
+
+    function runSpotlight(){
+        if (isAnimating || isPaused || reducedMotion) return;
+
+        var gridRect = galleryGrid.getBoundingClientRect();
+        if (gridRect.top > window.innerHeight || gridRect.bottom < 0) return;
+        if (window.innerWidth < 768) return;
+
+        isAnimating = true;
+
+        var currentActive = galleryGrid.querySelector('.vz-gallery-item.is-active');
+        var currentIndex = currentActive ? gridItems.indexOf(currentActive) : -1;
+
+        var newIndex;
+        var tries = 0;
+        do {
+            newIndex = Math.floor(Math.random() * gridItems.length);
+            tries++;
+        } while (
+            tries < 30 &&
+            (newIndex === currentIndex ||
+             (currentIndex >= 0 && isNeighborByIndex(currentIndex, newIndex)))
+        );
+
+        var firstRects = gridItems.map(function(el){ return el.getBoundingClientRect(); });
+
+        if (currentActive) currentActive.classList.remove('is-active');
+        gridItems[newIndex].classList.add('is-active');
+
+        void galleryGrid.offsetHeight;
+
+        var lastRects = gridItems.map(function(el){ return el.getBoundingClientRect(); });
+
+        gridItems.forEach(function(el, i){
+            var first = firstRects[i];
+            var last = lastRects[i];
+            var dx = first.left - last.left;
+            var dy = first.top - last.top;
+            var sw = last.width > 0 ? first.width / last.width : 1;
+            var sh = last.height > 0 ? first.height / last.height : 1;
+
+            if (Math.abs(dx) < 1 && Math.abs(dy) < 1 &&
+                Math.abs(sw - 1) < 0.01 && Math.abs(sh - 1) < 0.01) {
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            animateNumber(daysEl, days);
-            animateNumber(hoursEl, hours);
-            animateNumber(minutesEl, minutes);
-            animateNumber(secondsEl, seconds);
-        }
-
-        function animateNumber(element, newValue) {
-            const formattedValue = String(newValue).padStart(2, '0');
-            if (element.textContent !== formattedValue) {
-                element.style.transform = 'scale(1.15)';
-                element.textContent = formattedValue;
-                setTimeout(() => {
-                    element.style.transform = 'scale(1)';
-                }, 200);
-            }
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    }
-
-    // ===== Intersection Observer =====
-    function initScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.vizavi-landing .step-card, .vizavi-landing .prize-card, .vizavi-landing .terms-list li').forEach((el) => {
-            observer.observe(el);
+            el.style.transition = 'none';
+            el.style.transformOrigin = 'top left';
+            el.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + sw + ', ' + sh + ')';
         });
-    }
 
-    // ===== Плавный скролл =====
-    function initSmoothScroll() {
-        document.querySelectorAll('.vizavi-landing a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
+        requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+                gridItems.forEach(function(el){
+                    el.style.transition = 'transform ' + ANIM_DURATION + 'ms cubic-bezier(0.65, 0, 0.35, 1)';
+                    el.style.transform = '';
+                });
 
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
+                setTimeout(function(){
+                    gridItems.forEach(function(el){
+                        el.style.transition = '';
+                        el.style.transformOrigin = '';
+                        el.style.transform = '';
                     });
-                }
+                    isAnimating = false;
+                }, ANIM_DURATION + 50);
             });
         });
     }
 
-    // ===== Карусель =====
-    function initCarouselAutoScroll() {
-        const wrapper = document.getElementById('carouselWrapper');
-        const track = document.getElementById('carouselTrack');
-        if (!wrapper || !track) return;
+    galleryGrid.addEventListener('mouseenter', function(){ isPaused = true; });
+    galleryGrid.addEventListener('mouseleave', function(){ isPaused = false; });
 
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        let paused = false;
-        let resumeTimer = null;
-        const speed = 0.6;
-        const resumeDelay = 500;
-
-        function step() {
-            if (!paused && !reducedMotion) {
-                const half = track.scrollWidth / 2;
-                if (half > 0) {
-                    wrapper.scrollLeft += speed;
-                    if (wrapper.scrollLeft >= half) {
-                        wrapper.scrollLeft -= half;
-                    }
-                }
-            }
-            requestAnimationFrame(step);
-        }
-
-        function pause() {
-            paused = true;
-            if (resumeTimer) clearTimeout(resumeTimer);
-        }
-
-        function scheduleResume(delay = resumeDelay) {
-            if (resumeTimer) clearTimeout(resumeTimer);
-            resumeTimer = setTimeout(() => { paused = false; }, delay);
-        }
-
-        wrapper.addEventListener('touchstart', pause, { passive: true });
-        wrapper.addEventListener('touchend', () => scheduleResume(), { passive: true });
-
-        wrapper.addEventListener('pointerdown', pause);
-        wrapper.addEventListener('pointerup', () => scheduleResume());
-        wrapper.addEventListener('pointercancel', () => scheduleResume());
-
-        wrapper.addEventListener('wheel', () => {
-            pause();
-            scheduleResume();
-        }, { passive: true });
-
-        wrapper.addEventListener('mouseenter', pause);
-        wrapper.addEventListener('mouseleave', () => { paused = false; });
-
-        if (!reducedMotion) {
-            requestAnimationFrame(step);
-        }
+    if (!reducedMotion){
+        setTimeout(function(){
+            runSpotlight();
+            setInterval(runSpotlight, SPOTLIGHT_INTERVAL);
+        }, 2500);
     }
-
-    // ===== Инициализация =====
-    document.addEventListener('DOMContentLoaded', function() {
-        initCountdown();
-        initScrollAnimations();
-        initSmoothScroll();
-        initCarouselAutoScroll();
-    });
+})();
 </script>
 
 </body>
